@@ -172,7 +172,7 @@
     border-bottom: 1px solid var(--line);
   }
   .chapnav ol {
-    list-style: none; margin: 0 auto; padding: 10px var(--pad); max-width: var(--wrap);
+    list-style: none; margin: 0 auto; padding: 10px var(--pad); max-width: var(--wrap); position: relative;
     display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
   }
   .chapnav ol::-webkit-scrollbar { display: none; }
@@ -680,6 +680,20 @@
 
   // Active chapter chip
   var links = Array.prototype.slice.call(document.querySelectorAll('.chapnav a'));
+  var strip = document.querySelector('.chapnav ol');
+  var current = null;
+  function setActive(a) {
+    if (a === current) return;
+    current = a;
+    links.forEach(function (l) { l.classList.remove('active'); l.removeAttribute('aria-current'); });
+    a.classList.add('active');
+    a.setAttribute('aria-current', 'true');
+    // Scroll only the chip strip horizontally; never touch the page's vertical scroll.
+    var li = a.parentNode;
+    var left = li.offsetLeft - (strip.clientWidth - li.offsetWidth) / 2;
+    if (strip.scrollTo) strip.scrollTo({ left: left, behavior: 'smooth' });
+    else strip.scrollLeft = left;
+  }
   if ('IntersectionObserver' in window) {
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
@@ -687,11 +701,7 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         var a = byId[e.target.id];
-        if (!a) return;
-        links.forEach(function (l) { l.classList.remove('active'); l.removeAttribute('aria-current'); });
-        a.classList.add('active');
-        a.setAttribute('aria-current', 'true');
-        a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        if (a) setActive(a);
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
