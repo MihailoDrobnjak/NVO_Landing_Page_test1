@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="sr-Latn-ME">
+<head>
+<meta charset="UTF-8">
+<title>Vodič za apliciranje za bespovratna sredstva u Crnoj Gori</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@600;700&display=block" rel="stylesheet">
+<!--
+  Izvor za PDF verziju vodiča. Generisanje (iz korijena repoa):
+  "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --no-pdf-header-footer --virtual-time-budget=15000 --print-to-pdf=vodic-bespovratna-sredstva.pdf pdf-izvor/vodic.html
+-->
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+    @bottom-left {
+      content: "Vodič za bespovratna sredstva u Crnoj Gori";
+      font: 7.5pt "Inter", sans-serif; color: #64748b; vertical-align: top; padding-top: 5mm;
+    }
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font: 600 7.5pt "Inter", sans-serif; color: #0f172a; vertical-align: top; padding-top: 5mm;
+    }
+  }
+  @page :first {
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+  }
+
+  :root {
+    --ink: #0f172a;
+    --body: #1e293b;
+    --muted: #64748b;
+    --line: #cbd5e1;
+    --line-soft: #e2e8f0;
+    --tint: #f1f5f9;
+    --orange: #ea580c;
+    --orange-tint: #fff7ed;
+    --red: #b91c1c;
+    --red-tint: #fef2f2;
+    --green: #047857;
+    --green-tint: #ecfdf5;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html { font-size: 10pt; }
+  body { margin: 0; font-family: "Inter", sans-serif; line-height: 1.55; color: var(--body); orphans: 3; widows: 3; }
+  h1, h2, h3, h4 { font-family: "Outfit", sans-serif; color: var(--ink); margin: 0; line-height: 1.15; font-weight: 700; break-after: avoid; }
+  p { margin: 0 0 8pt; }
+  strong { color: var(--ink); font-weight: 600; }
+  ul, ol { margin: 0 0 8pt; padding-left: 15pt; }
+  li { margin-bottom: 3pt; }
+  li::marker { color: var(--orange); }
+
+  .page-break { break-before: page; }
+  .avoid { break-inside: avoid; }
+
+  /* ---------- Cover ---------- */
+  .cover { height: 257mm; display: flex; flex-direction: column; }
+  .cover-top { border-top: 5mm solid var(--orange); padding-top: 16mm; }
+  .cover .kicker { font-weight: 600; color: var(--orange); font-size: 10.5pt; margin-bottom: 8mm; }
+  .cover h1 { font-size: 34pt; line-height: 1.08; letter-spacing: -0.01em; max-width: 160mm; }
+  .cover .sub { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 15pt; color: #475569; margin-top: 8mm; max-width: 150mm; line-height: 1.3; }
+  .cover-case { display: flex; align-items: center; gap: 5mm; margin-top: 14mm; padding: 5mm 0; border-top: 0.5pt solid var(--line); border-bottom: 0.5pt solid var(--line); }
+  .cover-case img { height: 20mm; width: auto; }
+  .cover-case p { margin: 0; font-size: 10.5pt; }
+  .cover-intro { margin-top: 12mm; max-width: 150mm; font-size: 11pt; }
+  .cover-bottom { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; border-top: 1.5pt solid var(--ink); padding-top: 4mm; }
+  .cover-bottom div { font-size: 8.5pt; color: var(--muted); }
+  .cover-bottom b { display: block; font-family: "Outfit", sans-serif; font-size: 11pt; color: var(--ink); margin-bottom: 1mm; }
+  .edition { margin-top: 6mm; font-size: 8pt; color: var(--muted); }
+
+  /* ---------- Headings ---------- */
+  .part-label { font-weight: 600; color: var(--orange); font-size: 10pt; margin-bottom: 3mm; }
+  h2.part { font-size: 24pt; margin-bottom: 4mm; letter-spacing: -0.01em; }
+  .part-lead { font-size: 12pt; color: #475569; margin-bottom: 8mm; max-width: 150mm; }
+  h3 { font-size: 14.5pt; margin: 8mm 0 3mm; }
+  h4 { font-size: 11pt; margin: 5mm 0 2mm; }
+  .chapter-head { border-top: 1.5pt solid var(--ink); padding-top: 4mm; margin-bottom: 5mm; }
+  .chapter-head .num { font-weight: 600; color: var(--orange); font-size: 10pt; }
+  .chapter-head h2 { font-size: 21pt; margin-top: 1mm; }
+  .chapter-head .lead { font-size: 11.5pt; color: #475569; margin: 3mm 0 0; }
+  .chapter-head .lead.warn { color: var(--red); }
+
+  /* ---------- Blocks ---------- */
+  .box { border-left: 2.5pt solid var(--orange); background: var(--orange-tint); padding: 3.5mm 4.5mm; margin: 4mm 0 5mm; break-inside: avoid; }
+  .box p:last-child, .box ul:last-child { margin-bottom: 0; }
+  .box .t { font-weight: 700; color: var(--ink); display: block; margin-bottom: 1.5mm; }
+  .box.red { border-color: var(--red); background: var(--red-tint); }
+  .box.red .t { color: var(--red); }
+  .box.green { border-color: var(--green); background: var(--green-tint); }
+  .box.example { border-color: #475569; background: var(--tint); }
+  .box.example .t::before { content: "Primjer · "; color: var(--orange); }
+
+  .quote { font-family: "Outfit", sans-serif; font-size: 16pt; font-weight: 600; color: var(--ink); line-height: 1.3; border-left: 3pt solid var(--orange); padding-left: 5mm; margin: 5mm 0; }
+
+  dl.items { margin: 0 0 5mm; }
+  dl.items > div { padding: 2.5mm 0; border-top: 0.5pt solid var(--line-soft); break-inside: avoid; }
+  dl.items > div:first-child { border-top: 0; }
+  dl.items dt { font-weight: 700; color: var(--ink); }
+  dl.items dd { margin: 0.5mm 0 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 9pt; break-inside: avoid; }
+  th, td { text-align: left; vertical-align: top; padding: 2mm 2.5mm; border-bottom: 0.5pt solid var(--line); }
+  th { background: var(--tint); font-weight: 600; color: var(--ink); border-bottom: 1pt solid var(--ink); }
+  td.r, th.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr.total td { font-weight: 700; color: var(--ink); border-top: 1pt solid var(--ink); border-bottom: 0; }
+  table.compare td:first-child { font-weight: 600; color: var(--ink); width: 24%; }
+  .caption { font-size: 8pt; color: var(--muted); margin-top: -3mm; margin-bottom: 5mm; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .weak-strong { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 0.5pt solid var(--line); margin: 3mm 0 5mm; break-inside: avoid; }
+  .weak-strong > div { padding: 3mm 4mm; }
+  .weak-strong > div + div { border-left: 0.5pt solid var(--line); }
+  .weak-strong .h { font-weight: 700; font-size: 8.5pt; margin-bottom: 1.5mm; }
+  .weak-strong .weak .h { color: var(--red); }
+  .weak-strong .strong .h { color: var(--green); }
+  .weak-strong p { margin: 0 0 2mm; font-size: 9.5pt; }
+
+  ol.steps { list-style: none; padding: 0; counter-reset: s; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 2.2mm 0 2.2mm 11mm; border-top: 0.5pt solid var(--line-soft); margin: 0; break-inside: avoid; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 2mm; width: 6.5mm; height: 6.5mm; border-radius: 50%; background: var(--ink); color: #fff; font: 700 8.5pt/6.5mm "Inter", sans-serif; text-align: center; }
+
+  .toc { margin-top: 2mm; }
+  .toc div { display: grid; grid-template-columns: 22mm 1fr; padding: 2.4mm 0; border-top: 0.5pt solid var(--line-soft); }
+  .toc div:last-child { border-bottom: 0.5pt solid var(--line-soft); }
+  .toc span:first-child { color: var(--orange); font-weight: 600; }
+  .toc small { display: block; color: var(--muted); font-size: 8.5pt; }
+
+  /* Checklist */
+  .check { list-style: none; padding: 0; margin: 0 0 5mm; }
+  .check li { display: grid; grid-template-columns: 8mm 1fr; padding: 2.6mm 0; border-top: 0.5pt solid var(--line-soft); margin: 0; break-inside: avoid; }
+  .check li:last-child { border-bottom: 0.5pt solid var(--line-soft); }
+  .cb { width: 4.2mm; height: 4.2mm; border: 1pt solid var(--ink); border-radius: 0.8mm; margin-top: 0.4mm; }
+
+  /* Worksheets */
+  .ws-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.5pt solid var(--ink); padding-bottom: 2mm; margin-bottom: 5mm; }
+  .ws-head h2 { font-size: 17pt; }
+  .ws-head span { font-size: 8.5pt; color: var(--muted); }
+  .field { margin-bottom: 4.5mm; break-inside: avoid; }
+  .field label { display: block; font-weight: 600; color: var(--ink); font-size: 9pt; margin-bottom: 1mm; }
+  .field .hint { font-weight: 400; color: var(--muted); }
+  .lines { background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 7.5mm, #94a3b8 7.5mm, #94a3b8 calc(7.5mm + 0.4pt)); background-position: 0 0; }
+  .l1 { height: 8mm; } .l2 { height: 16mm; } .l3 { height: 23.5mm; } .l4 { height: 31mm; } .l5 { height: 38.5mm; }
+  table.blank td { height: 9mm; }
+  table.blank.tall td { height: 13mm; }
+
+  .muted { color: var(--muted); }
+  .small { font-size: 8.5pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ NASLOVNA ============ -->
+<section class="cover">
+  <div class="cover-top">
+    <p class="kicker">Uvod: anatomija bespovratnih sredstava</p>
+    <h1>Sveobuhvatni vodič za apliciranje za bespovratna sredstva u Crnoj Gori</h1>
+    <p class="sub">Detaljne instrukcije za izbor programa, pisanje biznis plana i predaju dokumentacije</p>
+  </div>
+  <div class="cover-case">
+    <img src="../logos/bijelo-polje-grb.png" alt="Grb Opštine Bijelo Polje">
+    <p><strong>Praktični priručnik sa studijom slučaja: Opština Bijelo Polje</strong><br><span class="muted">Izdanje za štampu, sa radnim listovima za popunjavanje</span></p>
+  </div>
+  <div class="cover-intro">
+    <p>Bespovratna sredstva (grantovi) predstavljaju namjenska, nepovratna finansijska sredstva koja dodjeljuju državne institucije, lokalne samouprave ili međunarodni fondovi.</p>
+    <p>Ovaj vodič pruža pregled izvora i korak-po-korak instrukcije za pisanje biznis plana. Kroz sva poglavlja provlači se jedan primjer, zanatska pekara, kako biste vidjeli kako izgleda dobro popunjen plan.</p>
+  </div>
+  <div class="cover-bottom">
+    <div><b>Dio I</b>Izvori finansiranja</div>
+    <div><b>Dio II</b>Biznis plan u 6 poglavlja</div>
+    <div><b>Dio III</b>Kontrolna lista za predaju</div>
+    <div><b>Prilozi</b>Rječnik i radni listovi</div>
+  </div>
+  <p class="edition">Novembar 2026. Informacije su opšteg karaktera. Iznosi, rokovi i uslovi se mijenjaju svake godine, zato uvijek provjerite aktuelni javni poziv. Vodič nije zvanična publikacija nijedne institucije koja se u njemu pominje.</p>
+</section>
+
+<!-- ============ SADRŽAJ ============ -->
+<section class="page-break">
+  <p class="part-label">Sadržaj</p>
+  <h2 class="part">Šta se nalazi u vodiču</h2>
+  <div class="toc">
+    <div><span>Uvod</span><span>Ključno pravilo i tok apliciranja<small>Šta donator zaista finansira i sedam koraka od ideje do predaje</small></span></div>
+    <div><span>Dio I</span><span>Krovni izvori finansiranja u Crnoj Gori<small>ZZZCG, Ministarstvo (MER), opštinski fondovi i kako odabrati pravi program</small></span></div>
+    <div><span>Dio II</span><span>Praktični vodič za biznis plan (Opština Bijelo Polje)<small>Priprema podataka i šest poglavlja biznis plana, sa primjerom za svako poglavlje</small></span></div>
+    <div><span>Dio III</span><span>Kontrolna lista za finalnu predaju<small>Provjere koje sprečavaju odbijanje zbog administracije</small></span></div>
+    <div><span>Dio IV</span><span>Nakon odobrenja<small>Namjensko trošenje, pravdanje i izvještavanje</small></span></div>
+    <div><span>Prilozi</span><span>Rječnik pojmova i radni listovi<small>Obrasci za štampu: osnovni podaci, matrica konkurencije, investicija, troškovi</small></span></div>
+  </div>
+
+  <h3>Kako koristiti ovaj vodič</h3>
+  <ol class="steps">
+    <li><strong>Pročitajte Uvod i Dio I</strong> prije nego što počnete da pišete. Izbor pogrešnog programa je najčešći razlog uzaludnog rada.</li>
+    <li><strong>Odštampajte radne listove</strong> sa kraja vodiča i popunite ih rukom dok prikupljate podatke. Tek onda prelazite na pisanje.</li>
+    <li><strong>Pišite redom poglavlja 2 do 6</strong>, a rezime (poglavlje 1) ostavite za sam kraj.</li>
+    <li><strong>Prije predaje prođite Dio III</strong> stavku po stavku, olovkom u ruci.</li>
+  </ol>
+  <div class="box">
+    <span class="t">O primjeru u vodiču</span>
+    <p>Primjer zanatske pekare je izmišljen i služi isključivo za ilustraciju. Brojke u primjeru su međusobno usklađene kako biste vidjeli logiku, ali nisu tržišne cijene. Za vaš plan koristite isključivo sopstvene podatke i zvanične ponude dobavljača.</p>
+  </div>
+</section>
+
+<!-- ============ UVOD ============ -->
+<section class="page-break">
+  <p class="part-label">Uvod</p>
+  <h2 class="part">Ključno pravilo koje svaki aplikant mora razumjeti</h2>
+
+  <p class="quote">Donator ne investira novac da bi vaša firma ostvarila profit, već da bi vaš profit generisao širi društveni uticaj.</p>
+  <p>Taj uticaj se ogleda kroz smanjenje nezaposlenosti, povećanje izvoza, uvođenje inovacija ili osnaživanje marginalizovanih grupa (žensko preduzetništvo).</p>
+  <p>Zato komisija vaš plan ne čita kao investitor koji pita „koliko ću zaraditi", već kao institucija koja pita „šta zajednica dobija ako ovaj biznis uspije". Svako poglavlje plana treba, direktno ili indirektno, da odgovori na to pitanje.</p>
+
+  <h3>Kako pokazati društveni uticaj</h3>
+  <p>Uticaj mora biti konkretan i mjerljiv. Opšte fraze ne donose bodove; brojevi, rokovi i jasno imenovane grupe donose.</p>
+  <div class="weak-strong">
+    <div class="weak">
+      <p class="h">SLABO</p>
+      <p>„Naš biznis će doprinijeti razvoju lokalne zajednice."</p>
+      <p>„Zaposlićemo ljude."</p>
+      <p>„Pomoći ćemo ženama."</p>
+    </div>
+    <div class="strong">
+      <p class="h">JAKO</p>
+      <p>„U prvih 6 mjeseci zapošljavamo jednu osobu sa evidencije nezaposlenih, a u drugoj godini još jednu."</p>
+      <p>„Sirovine nabavljamo od dva lokalna proizvođača, čime zadržavamo novac u opštini."</p>
+      <p>„Osnivačica je žena do 30 godina, a prvo novo radno mjesto namijenjeno je ženi sa evidencije ZZZCG."</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="page-break">
+  <p class="part-label">Uvod</p>
+  <h2 class="part">Tok apliciranja u sedam koraka</h2>
+  <p class="part-lead">Od otvaranja javnog poziva do predaje. Redoslijed je važan: svaki korak se oslanja na prethodni.</p>
+  <ol class="steps">
+    <li><strong>Pronađite javni poziv i pročitajte ga dva puta.</strong> Prvi put radi razumijevanja, drugi put sa markerom: podvucite uslove, kriterijume bodovanja, rok i spisak obavezne dokumentacije.</li>
+    <li><strong>Provjerite formalne uslove.</strong> Status (nezaposlen, registrovan, sjedište u opštini), dozvoljene djelatnosti, iznose i obavezno sopstveno učešće. Ako jedan uslov ne ispunjavate, ne nastavljajte sa tim pozivom.</li>
+    <li><strong>Prikupite podatke i ponude.</strong> Zatražite profakture za svaku stavku koju planirate da kupite. Ovo je korak koji najduže traje, zato počnite odmah.</li>
+    <li><strong>Napišite poglavlja 2 do 6 biznis plana</strong> uz pomoć Dijela II ovog vodiča.</li>
+    <li><strong>Napišite rezime (poglavlje 1) na kraju</strong>, kada su sve brojke konačne.</li>
+    <li><strong>Prođite kontrolnu listu (Dio III)</strong> i ispravite svaku neusklađenost.</li>
+    <li><strong>Predajte u roku i sačuvajte dokaz o predaji</strong> (arhivski broj, potvrdu ili povratnicu).</li>
+  </ol>
+
+  <h3>Koliko vremena planirati</h3>
+  <table>
+    <thead><tr><th style="width:55%">Faza</th><th>Okvirno vrijeme</th></tr></thead>
+    <tbody>
+      <tr><td>Čitanje javnog poziva i provjera uslova</td><td>1 do 2 dana</td></tr>
+      <tr><td>Prikupljanje profaktura i dokumentacije</td><td>1 do 3 sedmice, zavisno od dobavljača</td></tr>
+      <tr><td>Pisanje poglavlja 2 do 6</td><td>1 do 2 sedmice</td></tr>
+      <tr><td>Rezime i provjera po kontrolnoj listi</td><td>2 do 3 dana</td></tr>
+      <tr><td>Predaja</td><td>Najkasnije 2 do 3 radna dana prije roka</td></tr>
+      <tr class="total"><td>Ukupno</td><td>Računajte na 3 do 6 sedmica</td></tr>
+    </tbody>
+  </table>
+  <p class="caption">Procjena je okvirna i služi za planiranje. Rok iz javnog poziva je jedini obavezujući.</p>
+
+  <div class="box">
+    <span class="t">Pazite na rok važenja uvjerenja</span>
+    <p>Uvjerenja iz Poreske uprave i CBCG moraju biti mlađa od 30 dana u trenutku predaje. Zato ih ne tražite prve sedmice, već kad je plan skoro gotov, ali nikako posljednjeg dana.</p>
+  </div>
+</section>
+
+<!-- ============ DIO I ============ -->
+<section class="page-break">
+  <p class="part-label">Dio I</p>
+  <h2 class="part">Krovni izvori finansiranja u Crnoj Gori</h2>
+  <p class="part-lead">Identifikujte instituciju čiji program najviše odgovara vašem statusu.</p>
+
+  <table class="compare">
+    <thead><tr><th></th><th>Zavod za zapošljavanje (ZZZCG)</th><th>Ministarstvo (MER)</th><th>Opštinski fondovi</th></tr></thead>
+    <tbody>
+      <tr><td>Fokus</td><td>Samozapošljavanje i prelazak iz nezaposlenosti u formalni biznis.</td><td>Jačanje konkurentnosti postojećih MMSP, oprema i digitalizacija.</td><td>Lokalna ekonomija, žensko preduzetništvo, poljoprivreda.</td></tr>
+      <tr><td>Ciljna grupa</td><td>Lica na evidenciji nezaposlenih. Dodatno se boduju mladi do 30 godina, žene i lica sa sjevera.</td><td>Registrovana preduzeća sa pozitivnim bilansom.</td><td>Lica i preduzeća registrovana u toj opštini.</td></tr>
+      <tr><td>Model isplate</td><td>Namjenski, u ratama ili odjednom nakon odobrenja.</td><td>Refundacija. Preduzeće investira, MER vraća 40% do 70%.</td><td>Najčešće avansno uz odobren plan.</td></tr>
+      <tr><td>Ključni zahtjev</td><td>Održivost radnog mjesta. Dokazati isplatu doprinosa i zarade osnivaču najmanje 12 mjeseci.</td><td>Mjerljiv rast (prihodi, zaposleni, izvoz).</td><td>Stroga obaveza namjenskog pravdanja računa.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1. Zavod za zapošljavanje Crne Gore (ZZZCG)</h3>
+  <p>Program je namijenjen onima koji tek pokreću sopstveni posao i do sada su bili nezaposleni. Cilj Zavoda je da osoba trajno pređe sa evidencije nezaposlenih u formalno, registrovano poslovanje.</p>
+  <h4>Na šta paziti</h4>
+  <ul>
+    <li>Status lica na evidenciji nezaposlenih je osnovni uslov. Provjerite ga prije svega ostalog.</li>
+    <li>Obaveza je da osnivaču isplaćujete zaradu i doprinose najmanje 12 mjeseci. Taj trošak mora biti vidljiv u vašem mjesečnom planu troškova od prvog mjeseca (poglavlje 6).</li>
+    <li>Ako ste mlađi od 30 godina, žena ili lice sa sjevera, to jasno navedite u planu, jer donosi dodatne bodove.</li>
+  </ul>
+
+  <h3>2. Ministarstvo (MER)</h3>
+  <p>Program je namijenjen preduzećima koja već posluju i žele da rastu: da kupe opremu, digitalizuju poslovanje ili povećaju izvoz.</p>
+  <h4>Na šta paziti</h4>
+  <ul>
+    <li><strong>Refundacija znači da novac morate imati unaprijed.</strong> Preduzeće prvo plaća cijelu investiciju, a Ministarstvo vraća dio (40% do 70%) tek nakon pravdanja. Planirajte izvor tog novca (sopstvena sredstva ili kredit) prije apliciranja.</li>
+    <li>Pozitivan bilans se dokazuje finansijskim izvještajima, zato ih pripremite na vrijeme.</li>
+    <li>Rast mora biti mjerljiv: postavite ciljeve u brojkama, npr. „povećanje prihoda za 15% u roku od 12 mjeseci" ili „jedno novo radno mjesto".</li>
+  </ul>
+
+  <h3>3. Opštinski fondovi</h3>
+  <p>Opštine podržavaju lokalnu ekonomiju, žensko preduzetništvo i poljoprivredu. U ovom vodiču primjer je Opština Bijelo Polje.</p>
+  <h4>Na šta paziti</h4>
+  <ul>
+    <li>Registracija (prebivalište ili sjedište) u toj opštini je uslov.</li>
+    <li>Avansna isplata znači da novac dobijate unaprijed, ali kontrola trošenja je stroga. Kupite tačno ono što je u planu, kod dobavljača sa profakture, i čuvajte svaki račun.</li>
+    <li>Ako morate promijeniti stavku nabavke (npr. model mašine više nije dostupan), prvo pisanim putem tražite saglasnost davaoca sredstava.</li>
+  </ul>
+
+  <h3>Kako odabrati pravi program</h3>
+  <table>
+    <thead><tr><th style="width:48%">Ako ste…</th><th>Najvjerovatnije odgovara</th><th>Prvo provjerite</th></tr></thead>
+    <tbody>
+      <tr><td>Nezaposleni ste, na evidenciji Zavoda, i pokrećete prvi biznis</td><td>ZZZCG</td><td>Da li možete 12 mjeseci plaćati sebi zaradu i doprinose</td></tr>
+      <tr><td>Imate registrovano preduzeće sa pozitivnim bilansom i planirate investiciju u opremu ili digitalizaciju</td><td>MER</td><td>Da li imate novac za cijelu investiciju unaprijed</td></tr>
+      <tr><td>Registrovani ste u opštini i bavite se lokalnom djelatnošću, poljoprivredom, ili ste preduzetnica</td><td>Opštinski fond</td><td>Da li možete uredno opravdati svaki račun</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">Uslovi pojedinačnih javnih poziva imaju prednost nad ovim pregledom. Ako niste sigurni da li ispunjavate uslov, pozovite instituciju prije apliciranja.</p>
+</section>
+
+<!-- ============ DIO II: PRIPREMA ============ -->
+<section class="page-break">
+  <p class="part-label">Dio II: Praktični vodič (Opština Bijelo Polje)</p>
+  <h2 class="part">Biznis plan, poglavlje po poglavlje</h2>
+  <p class="part-lead">Prikupite precizne podatke prije samog tehničkog unosa.</p>
+
+  <h3>Šta prikupiti prije pisanja</h3>
+  <ul class="check">
+    <li><span class="cb"></span><span><strong>Identifikacioni podaci:</strong> tačan naziv, adresa, JMBG, PIB (ako je biznis registrovan).</span></li>
+    <li><span class="cb"></span><span><strong>Profakture</strong> za svaku stavku koju planirate da kupite iz granta, od registrovanih dobavljača, izdate na vaše ime.</span></li>
+    <li><span class="cb"></span><span><strong>Dokaz o poslovnom prostoru:</strong> ugovor o zakupu ili dokaz o vlasništvu, sa adresom i kvadraturom.</span></li>
+    <li><span class="cb"></span><span><strong>Dokazi o kompetencijama:</strong> diplome, sertifikati, potvrde o radnom iskustvu.</span></li>
+    <li><span class="cb"></span><span><strong>Cijene:</strong> cjenovnici dobavljača sirovina i procjena vaših prodajnih cijena.</span></li>
+    <li><span class="cb"></span><span><strong>Podaci o konkurenciji:</strong> najmanje tri direktna konkurenta, njihove cijene i ponuda.</span></li>
+    <li><span class="cb"></span><span><strong>Mjesečni troškovi:</strong> zakup, režije, knjigovodstvo, zarade i doprinosi.</span></li>
+    <li><span class="cb"></span><span><strong>Spisak potrebnih dozvola</strong> za vašu djelatnost i rok za njihovo dobijanje.</span></li>
+  </ul>
+
+  <h3>Redoslijed pisanja</h3>
+  <p>Biznis plan se čita od poglavlja 1 do 6, ali se piše drugačije: poglavlja 2 do 6 prvo, a rezime (poglavlje 1) na kraju. Rezime sažima brojke iz poglavlja 6, pa ga nije moguće tačno napisati dok finansijski plan nije gotov.</p>
+
+  <h3>Primjer koji prati vodič</h3>
+  <div class="box example">
+    <span class="t">Zanatska pekara „Domaći hljeb"</span>
+    <p>Nezaposlena osnivačica (28 godina) sa iskustvom rada u pekari otvara malu zanatsku pekaru u Bijelom Polju. Proizvodi hljeb od brašna iz regiona, peciva i pite. Od granta traži sredstva za pekarsku opremu, a dio opreme i PDV pokriva sopstvenim sredstvima.</p>
+  </div>
+</section>
+
+<!-- ============ POGLAVLJE 1 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 1</span>
+    <h2>Rezime biznis plana i osnovni podaci</h2>
+    <p class="lead warn">Ovaj dio se uvijek piše na samom kraju. Komisija ovdje donosi odluku da li plan vrijedi čitati.</p>
+  </div>
+
+  <p>Rezime je jedina strana koju svaki član komisije sigurno pročita. Mora za manje od minute odgovoriti na četiri pitanja: ko ste, šta radite, koliko tražite i za šta.</p>
+
+  <dl class="items">
+    <div><dt>Identifikacioni podaci</dt><dd>Tačan naziv, adresa u BP, JMBG, PIB. Prepišite ih iz zvaničnih dokumenata, slovo po slovo. Naziv mora biti isti kao u rješenju o registraciji i na profakturama.</dd></div>
+    <div><dt>Elevator Pitch</dt><dd>U 3 rečenice opišite djelatnost bez fraza. Prva rečenica: šta radite i gdje. Druga: kome prodajete i zašto baš vi. Treća: šta tražite i koji je društveni efekat.</dd></div>
+    <div><dt>Finansijska konstrukcija</dt><dd>Jasno razdvojite traženi iznos od sopstvenog učešća. Najbolje u obliku male tabele sa ukupnim iznosom investicije.</dd></div>
+    <div><dt>Namjena sredstava</dt><dd>Jedna rečenica koja definiše predmet nabavke. Bez „i ostalo" i bez opštih izraza poput „oprema za rad".</dd></div>
+  </dl>
+
+  <div class="box example">
+    <span class="t">Elevator pitch i namjena</span>
+    <p>„Otvaramo zanatsku pekaru u Bijelom Polju koja svakog dana peče hljeb, peciva i pite od brašna iz regiona. Prodajemo domaćinstvima iz naselja, radnicima okolnih firmi i ugostiteljima, sa svježim pečenjem tri puta dnevno, što nijedna pekara u okolini ne nudi. Tražimo 7.400 € za pekarsku opremu, čime zapošljavamo osnivačicu i jednu ženu sa evidencije nezaposlenih."</p>
+    <p><strong>Namjena sredstava:</strong> nabavka konvekcijske pećnice, spiralne mješalice za tijesto i rashladne vitrine za zanatsku pekaru.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Finansijska konstrukcija (primjer)</th><th class="r">Iznos</th></tr></thead>
+    <tbody>
+      <tr><td>Ukupna investicija bez PDV-a</td><td class="r">8.500,00 €</td></tr>
+      <tr><td>PDV na investiciju</td><td class="r">1.785,00 €</td></tr>
+      <tr class="total"><td>Ukupna investicija sa PDV-om</td><td class="r">10.285,00 €</td></tr>
+      <tr><td>Traženi iznos (grant)</td><td class="r">7.400,00 €</td></tr>
+      <tr><td>Sopstveno učešće (radni sto i police 1.100,00 € + cio PDV 1.785,00 €)</td><td class="r">2.885,00 €</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Struktura rezimea na jednoj strani</h4>
+  <ol class="steps">
+    <li><strong>Naslov:</strong> naziv biznisa i djelatnost u jednom redu.</li>
+    <li><strong>Identifikacioni podaci</strong> u maloj tabeli.</li>
+    <li><strong>Elevator pitch</strong> u tri rečenice.</li>
+    <li><strong>Finansijska konstrukcija</strong> u tabeli: ukupno, traženo, sopstveno učešće.</li>
+    <li><strong>Namjena sredstava</strong> u jednoj rečenici.</li>
+    <li><strong>Društveni efekat u brojkama:</strong> broj novih radnih mjesta, ciljne grupe, lokalni dobavljači.</li>
+  </ol>
+
+  <div class="box red">
+    <span class="t">Česte greške</span>
+    <ul>
+      <li>Rezime napisan na početku, pa iznosi ne odgovaraju finansijskom planu.</li>
+      <li>Naziv ili adresa napisani drugačije nego u rješenju o registraciji.</li>
+      <li>Traženi iznos i sopstveno učešće pomiješani u jednoj brojci.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ POGLAVLJE 2 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 2</span>
+    <h2>Opis poslovne ideje, vizija i tim</h2>
+    <p class="lead">Dokazujete da razumijete problem koji rješavate i posjedujete kompetencije.</p>
+  </div>
+
+  <dl class="items">
+    <div><dt>Karakteristike proizvoda/usluge</dt><dd>Napravite strukturiran spisak (asortiman) onoga što nudite. Za svaki proizvod ili uslugu: naziv, kratak opis, jedinica prodaje. Grupišite ih (npr. osnovni proizvodi, sezonski proizvodi, usluge po narudžbi).</dd></div>
+    <div><dt>Problem i rješenje</dt><dd>Koji tačno nedostatak rješavate? Opišite ga što konkretnije, sa mjestom i brojem. <em class="muted">Npr. Nedostatak servisa mašina u krugu od 30km.</em></dd></div>
+    <div><dt>Inovativnost</dt><dd>Definišite vašu dodatnu vrijednost (brža usluga, digitalno zakazivanje). Inovacija ne mora biti tehnološka: novi način prodaje, novo radno vrijeme ili nova kombinacija usluga takođe se računa.</dd></div>
+    <div><dt>Ljudski resursi</dt><dd>Povežite iskustvo, sertifikate i obrazovanje sa poslovnom idejom. Za svaku osobu u timu napišite: ulogu u biznisu, relevantno iskustvo (godine, gdje) i dokaz (diploma, sertifikat, potvrda poslodavca).</dd></div>
+  </dl>
+
+  <div class="box example">
+    <span class="t">Opis ideje za pekaru</span>
+    <p><strong>Asortiman:</strong> (1) hljeb: bijeli, polubijeli, integralni; (2) peciva: kifle, perece, pogačice; (3) pite i kolači: pita sa sirom, zeljanica, pita od jabuka; (4) narudžbe: pogače i peciva za proslave.</p>
+    <p><strong>Problem:</strong> u naselju i okolnim ulicama nema pekare koja peče tokom cijelog dana, pa je poslije 10 časova dostupan samo industrijski hljeb iz prodavnica.</p>
+    <p><strong>Rješenje i inovativnost:</strong> pečenje u tri ture (6, 11 i 16 časova), narudžbe telefonom i porukom dan unaprijed, preuzimanje bez čekanja.</p>
+    <p><strong>Tim:</strong> osnivačica, 6 godina rada kao pekar u pekari u Bijelom Polju (potvrda poslodavca), završena srednja škola za prehrambenu struku (diploma).</p>
+  </div>
+
+  <div class="box red">
+    <span class="t">Česte greške</span>
+    <ul>
+      <li>Opis ideje bez opisa problema: komisija ne vidi zašto je biznis potreban.</li>
+      <li>Navedeno iskustvo bez dokaza u prilogu.</li>
+      <li>Riječi poput „jedinstven", „najbolji", „revolucionaran" bez objašnjenja po čemu.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ POGLAVLJE 3 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 3</span>
+    <h2>Analiza tržišta i konkurencije</h2>
+  </div>
+
+  <div class="box red">
+    <span class="t">Pažnja</span>
+    <p>Izjave poput „naši kupci su svi građani" ili „nemamo konkurenciju" vode do gubitka bodova!</p>
+  </div>
+
+  <dl class="items">
+    <div><dt>Segmentacija kupaca</dt><dd>Precizno definišite ciljnu grupu <em class="muted">(umjesto „turisti", napišite „tranzitni turisti ka Đalovića klisuri")</em>. Navedite dvije do tri grupe kupaca i za svaku: ko su, gdje su, kada i zašto kupuju.</dd></div>
+    <div><dt>Tržište nabavke</dt><dd>Navedite lokalne dobavljače (pokazuje ekonomski patriotizam i umreženost). Za svakog: šta nabavljate, odakle je i zašto baš on.</dd></div>
+    <div><dt>Matrica konkurencije</dt><dd>Identifikujte 3 direktna konkurenta, njihove prednosti, slabosti i <strong>vašu konkurentsku prednost</strong>. Priznavanje da konkurent ima prednosti djeluje ozbiljno, a ne slabo.</dd></div>
+  </dl>
+
+  <div class="box example">
+    <span class="t">Segmenti kupaca za pekaru</span>
+    <ul>
+      <li><strong>Domaćinstva iz naselja i okolnih ulica:</strong> jutarnja i popodnevna kupovina hljeba, svaki dan.</li>
+      <li><strong>Zaposleni u obližnjim firmama i institucijama:</strong> doručak i užina između 9 i 12 časova.</li>
+      <li><strong>Ugostiteljski objekti u gradu:</strong> redovne dnevne isporuke hljeba po dogovoru (B2B).</li>
+    </ul>
+    <p><strong>Tržište nabavke:</strong> brašno iz mlina iz regiona, sir i jaja od registrovanih poljoprivrednih proizvođača iz okoline Bijelog Polja.</p>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:24%">Konkurent (primjer)</th><th>Prednosti</th><th>Slabosti</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Supermarketi</strong> (industrijski hljeb)</td><td>Niska cijena, dostupni cijeli dan, kupac kupuje sve na jednom mjestu</td><td>Hljeb nije svjež tokom dana, ograničen izbor domaćih proizvoda</td></tr>
+      <tr><td><strong>Postojeća pekara u centru</strong></td><td>Poznato ime, dobra lokacija, stalni kupci</td><td>Gužva ujutru, peče samo jutarnju turu, bez narudžbi unaprijed</td></tr>
+      <tr><td><strong>Kućna proizvodnja i pijaca</strong></td><td>Domaći ukus, povjerenje kupaca</td><td>Neredovna ponuda, samo pijačnim danima, bez deklaracije</td></tr>
+    </tbody>
+  </table>
+  <div class="box green">
+    <span class="t">Naša konkurentska prednost</span>
+    <p>Svjež hljeb tokom cijelog dana (tri ture pečenja), brašno iz regiona i narudžbe dan unaprijed, uz registrovanu proizvodnju i deklarisane proizvode.</p>
+  </div>
+</section>
+
+<!-- ============ POGLAVLJE 4 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 4</span>
+    <h2>Marketing plan i prodaja</h2>
+    <p class="lead">Ovdje dokazujete kako ćete fizički isporučiti proizvod i naplatiti ga.</p>
+  </div>
+
+  <dl class="items">
+    <div><dt>Politika cijena</dt><dd>Obrazložite cijene za vaša 3 udarna proizvoda (strategija proboja ili premijum). Proboj znači nižu cijenu da biste brže osvojili kupce; premijum znači višu cijenu koju opravdava kvalitet. Za svaki proizvod navedite cijenu, cijenu kod konkurencije i razlog.</dd></div>
+    <div><dt>Kanali distribucije</dt><dd>Direktno u lokalu, online prodaja, dostavna služba, B2B ugovori. Za svaki kanal napišite koji dio prodaje očekujete kroz njega.</dd></div>
+    <div><dt>Promotivne aktivnosti</dt><dd>Budite specifični: „Investiraćemo 150€ u sponzorisane objave na teritoriji BP". Svaka aktivnost treba da ima iznos, period i cilj.</dd></div>
+  </dl>
+
+  <table>
+    <thead><tr><th>Udarni proizvod (primjer)</th><th class="r">Cijena</th><th>Strategija</th><th>Obrazloženje</th></tr></thead>
+    <tbody>
+      <tr><td>Hljeb od brašna iz regiona, 500 g</td><td class="r">0,80 €</td><td>Proboj</td><td>Svakodnevni proizvod; cijena u rangu sa pekarom u centru, kako bi kupci probali i ostali</td></tr>
+      <tr><td>Peciva (kifle, perece)</td><td class="r">0,50 €</td><td>Proboj</td><td>Privlači zaposlene iz okolnih firmi u jutarnjim satima</td></tr>
+      <tr><td>Domaća pita, porcija</td><td class="r">2,00 €</td><td>Premijum</td><td>Ručno razvučene kore i domaći sir; kvalitet opravdava višu cijenu</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead><tr><th>Promotivna aktivnost (primjer)</th><th>Period</th><th class="r">Iznos</th></tr></thead>
+    <tbody>
+      <tr><td>Sponzorisane objave na društvenim mrežama, ciljane na teritoriju BP</td><td>Prva 3 mjeseca</td><td class="r">150,00 €</td></tr>
+      <tr><td>Degustacija na dan otvaranja</td><td>Dan otvaranja</td><td class="r">50,00 €</td></tr>
+      <tr><td>Letci sa cjenovnikom i brojem za narudžbe, u okolnim firmama</td><td>Prvi mjesec</td><td class="r">40,00 €</td></tr>
+      <tr class="total"><td>Ukupno</td><td></td><td class="r">240,00 €</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box red">
+    <span class="t">Česte greške</span>
+    <ul>
+      <li>„Reklamiraćemo se na društvenim mrežama" bez iznosa, perioda i cilja.</li>
+      <li>Cijene bez poređenja sa konkurencijom.</li>
+      <li>Nije objašnjeno kako proizvod stiže do kupca (dostava, preuzimanje, ugovori).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ POGLAVLJE 5 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 5</span>
+    <h2>Operativni plan i organizacija (Resursi)</h2>
+    <p class="lead">Opština želi garanciju da će biznis profunkcionisati odmah nakon uplate.</p>
+  </div>
+
+  <dl class="items">
+    <div><dt>Infrastruktura i poslovni prostor</dt><dd>Navedite lokaciju (naselje, adresa) i kvadraturu. Jasno naznačite vlasništvo ili zakup. Ako je prostor u zakupu, priložite ugovor i provjerite da traje najmanje onoliko koliko traje vaša obaveza prema davaocu sredstava.</dd></div>
+    <div><dt>Zakonodavni okvir i dozvole</dt><dd>Sanitarna inspekcija, Uprava za bezbjednost hrane, odobrenje Sekretarijata. Navedite koje dozvole vam trebaju, da li ih već imate i kada očekujete one koje nemate.</dd></div>
+    <div><dt>Plan zapošljavanja</dt><dd>Prikažite dinamiku zapošljavanja (dodatno se boduju OSI, žene, mladi). Za svako radno mjesto: kada se otvara, puno ili skraćeno radno vrijeme i koja ciljna grupa.</dd></div>
+  </dl>
+
+  <div class="box example">
+    <span class="t">Prostor i dozvole za pekaru</span>
+    <p><strong>Prostor:</strong> lokal od 45 m² u prizemlju stambene zgrade, u zakupu, ugovor na tri godine. Prostor ima priključak za vodu i trofaznu struju potrebnu za pećnicu.</p>
+    <p><strong>Dozvole:</strong> registracija djelatnosti, upis objekta kod nadležne uprave za bezbjednost hrane, sanitarni uslovi prostora i ljekarski pregledi zaposlenih koji rade sa hranom. Rok: do kraja drugog mjeseca.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Radno mjesto (primjer)</th><th>Od kada</th><th>Radno vrijeme</th><th>Ciljna grupa</th></tr></thead>
+    <tbody>
+      <tr><td>Osnivačica, pekar</td><td>1. mjesec</td><td>Puno</td><td>Žena do 30 godina, sa evidencije nezaposlenih</td></tr>
+      <tr><td>Prodavačica, pomoćni pekar</td><td>2. mjesec</td><td>Puno</td><td>Žena sa evidencije nezaposlenih</td></tr>
+      <tr><td>Pekar (druga smjena)</td><td>2. godina</td><td>Puno</td><td>Ako dnevna prodaja pređe 200 €</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Plan aktivnosti nakon odobrenja (primjer)</h4>
+  <table>
+    <thead><tr><th style="width:55%">Aktivnost</th><th>Mj. 1</th><th>Mj. 2</th><th>Mj. 3</th></tr></thead>
+    <tbody>
+      <tr><td>Potpisivanje ugovora, nabavka i montaža opreme</td><td>●</td><td></td><td></td></tr>
+      <tr><td>Adaptacija prostora, dozvole i upis objekta</td><td>●</td><td>●</td><td></td></tr>
+      <tr><td>Probna proizvodnja i zapošljavanje</td><td></td><td>●</td><td></td></tr>
+      <tr><td>Otvaranje i promotivne aktivnosti</td><td></td><td>●</td><td>●</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ POGLAVLJE 6 ============ -->
+<section class="page-break">
+  <div class="chapter-head">
+    <span class="num">Poglavlje 6</span>
+    <h2>Finansijski plan (Budžetiranje)</h2>
+    <p class="lead">Srce biznis plana. Svaka brojka mora biti apsolutno tačna, realna i dokumentovana.</p>
+  </div>
+
+  <dl class="items">
+    <div><dt>Pravdanje investicije (Profakture)</dt><dd>Zlatno pravilo grantova: Svaka stavka koju tražite mora biti pokrivena zvaničnom ponudom od registrovanog dobavljača. U tabeli investicije uz svaku stavku navedite dobavljača i broj profakture.</dd></div>
+    <div><dt>Tretman PDV-a</dt><dd>Sredstva najčešće NE pokrivaju PDV. Vi računate iznos bez PDV-a, dok obavezu poreza pokrivate sopstvenim sredstvima. Provjerite u javnom pozivu kako se tretira PDV.</dd></div>
+    <div><dt>Operativni troškovi (Rashodi)</dt><dd>Detaljno popišite mjesečne troškove: plate, doprinosi, zakup, režije, knjigovodstvo i nabavka materijala.</dd></div>
+    <div><dt>Projekcija prihoda</dt><dd>Konzervativna procjena prodaje po danima (npr. „Da ostvarim 3.000€ mjesečno, moram uslužiti 5 klijenata dnevno po 25€"). Krenite od dnevne prodaje, pa je pomnožite brojem radnih dana.</dd></div>
+  </dl>
+
+  <h4>Tabela investicije (primjer)</h4>
+  <table>
+    <thead><tr><th>Stavka</th><th>Profaktura</th><th class="r">Bez PDV-a</th><th class="r">PDV 21%</th><th class="r">Ukupno</th><th>Izvor</th></tr></thead>
+    <tbody>
+      <tr><td>Konvekcijska pećnica</td><td>Dobavljač A, br. 112/26</td><td class="r">4.200,00</td><td class="r">882,00</td><td class="r">5.082,00</td><td>Grant</td></tr>
+      <tr><td>Spiralna mješalica za tijesto</td><td>Dobavljač A, br. 112/26</td><td class="r">1.900,00</td><td class="r">399,00</td><td class="r">2.299,00</td><td>Grant</td></tr>
+      <tr><td>Rashladna vitrina</td><td>Dobavljač B, br. 45/26</td><td class="r">1.300,00</td><td class="r">273,00</td><td class="r">1.573,00</td><td>Grant</td></tr>
+      <tr><td>Radni sto i police od inoksa</td><td>Dobavljač C, br. 9/26</td><td class="r">1.100,00</td><td class="r">231,00</td><td class="r">1.331,00</td><td>Sopstveno</td></tr>
+      <tr class="total"><td>Ukupno</td><td></td><td class="r">8.500,00</td><td class="r">1.785,00</td><td class="r">10.285,00</td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="caption">Iz granta se traži 7.400,00 € (stavke bez PDV-a). Sopstveno učešće: 1.100,00 € za radni sto i police i 1.785,00 € PDV-a, ukupno 2.885,00 €. Stopa PDV-a u primjeru je opšta stopa od 21%; provjerite stopu na svojim profakturama.</p>
+</section>
+
+<section class="page-break">
+  <h4 style="margin-top:0">Mjesečni operativni troškovi (primjer)</h4>
+  <table>
+    <thead><tr><th>Trošak</th><th class="r">Mjesečno</th></tr></thead>
+    <tbody>
+      <tr><td>Zakup poslovnog prostora</td><td class="r">300,00 €</td></tr>
+      <tr><td>Zarada osnivačice sa doprinosima</td><td class="r">800,00 €</td></tr>
+      <tr><td>Zarada zaposlene sa doprinosima</td><td class="r">700,00 €</td></tr>
+      <tr><td>Režije (struja, voda, smeće)</td><td class="r">350,00 €</td></tr>
+      <tr><td>Brašno i ostale sirovine</td><td class="r">1.100,00 €</td></tr>
+      <tr><td>Knjigovodstvo</td><td class="r">80,00 €</td></tr>
+      <tr><td>Ambalaža i ostalo</td><td class="r">120,00 €</td></tr>
+      <tr class="total"><td>Ukupno mjesečno</td><td class="r">3.450,00 €</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Projekcija prihoda (primjer)</h4>
+  <table>
+    <thead><tr><th>Proizvod</th><th class="r">Komada dnevno</th><th class="r">Cijena</th><th class="r">Dnevno</th></tr></thead>
+    <tbody>
+      <tr><td>Hljeb</td><td class="r">120</td><td class="r">0,80 €</td><td class="r">96,00 €</td></tr>
+      <tr><td>Peciva</td><td class="r">60</td><td class="r">0,50 €</td><td class="r">30,00 €</td></tr>
+      <tr><td>Pite, porcija</td><td class="r">15</td><td class="r">2,00 €</td><td class="r">30,00 €</td></tr>
+      <tr class="total"><td>Ukupno dnevno</td><td></td><td></td><td class="r">156,00 €</td></tr>
+      <tr><td colspan="3">Mjesečno (26 radnih dana × 156,00 €)</td><td class="r"><strong>4.056,00 €</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <span class="t">Tačka pokrića: koliko morate prodati da ne budete u minusu</span>
+    <p>Podijelite ukupne mjesečne troškove brojem radnih dana. U primjeru: 3.450,00 € / 26 dana = <strong>132,69 € dnevno</strong>. Pekara pokriva troškove ako dnevno proda robe za oko 133 €. Planirana prodaja od 156 € dnevno daje rezervu od oko 23 € dnevno, odnosno 606 € mjesečno prije poreza.</p>
+    <p>Ovakvo obrazloženje uvjerava komisiju da ste brojke provjerili, i da biznis opstaje i ako prodaja bude nešto slabija od plana.</p>
+  </div>
+
+  <div class="box red">
+    <span class="t">Česte greške</span>
+    <ul>
+      <li>Iznos stavke u tabeli razlikuje se od iznosa na profakturi.</li>
+      <li>PDV uključen u traženi iznos iako ga program ne pokriva.</li>
+      <li>Prihodi procijenjeni „od oka" na mjesečnom nivou, bez računice po danima.</li>
+      <li>U troškovima nedostaje zarada osnivača sa doprinosima (kod ZZZCG programa to je ključna obaveza).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ DIO III ============ -->
+<section class="page-break">
+  <p class="part-label">Dio III</p>
+  <h2 class="part">Kontrolna lista (Checklista) za finalnu predaju</h2>
+  <p class="part-lead" style="color:var(--red);font-weight:600">30% aplikacija pada zbog administracije. Prije predaje provjerite:</p>
+
+  <ul class="check">
+    <li><span class="cb"></span><span><strong>Usklađenost brojeva:</strong> Da li se ukupni iznosi u tekstu, tabelama i profakturama tačno poklapaju u cent?</span></li>
+    <li><span class="cb"></span><span><strong>Aktuelnost dokumentacije:</strong> Da li su uvjerenja iz Poreske i CBCG mlađa od 30 dana?</span></li>
+    <li><span class="cb"></span><span><strong>Potpisi i pečati:</strong> Da li je formular biznis plana ručno potpisan i pečatiran?</span></li>
+    <li><span class="cb"></span><span><strong>Registracija:</strong> Da li je priloženo važeće Rješenje o registraciji iz CRPS-a?</span></li>
+    <li><span class="cb"></span><span><strong>Namjena profaktura:</strong> Da li su profakture izdate jasno i tačno na ime aplikanta?</span></li>
+  </ul>
+
+  <h3>Dodatne provjere</h3>
+  <ul class="check">
+    <li><span class="cb"></span><span><strong>Redoslijed dokumenata:</strong> Da li su prilozi poređani redom kojim ih navodi javni poziv?</span></li>
+    <li><span class="cb"></span><span><strong>Rezime:</strong> Da li iznosi u rezimeu odgovaraju finansijskom planu?</span></li>
+    <li><span class="cb"></span><span><strong>Kontakt:</strong> Da li su telefon i e-mail tačni, i da li se javljate na taj broj?</span></li>
+    <li><span class="cb"></span><span><strong>Kopija za vas:</strong> Da li ste napravili kopiju kompletne aplikacije prije predaje?</span></li>
+    <li><span class="cb"></span><span><strong>Rok i način predaje:</strong> Da li znate tačan rok (datum i čas) i da li se predaje lično, poštom ili elektronski?</span></li>
+  </ul>
+
+  <h3>Predaja</h3>
+  <ol class="steps">
+    <li>Ne čekajte posljednji dan. Kašnjenje od jednog sata znači odbačenu prijavu, bez obzira na kvalitet plana.</li>
+    <li>Ako predajete lično, tražite da vam na kopiji propratnog akta upišu arhivski broj i datum.</li>
+    <li>Ako šaljete poštom, šaljite preporučeno sa povratnicom i provjerite da li je mjerodavan datum slanja ili datum prijema.</li>
+  </ol>
+</section>
+
+<!-- ============ DIO IV ============ -->
+<section class="page-break">
+  <p class="part-label">Dio IV</p>
+  <h2 class="part">Nakon odobrenja</h2>
+  <p class="part-lead">Odobrenje nije kraj posla. Sredstva se pravdaju, a neopravdana sredstva se po pravilu vraćaju.</p>
+
+  <dl class="items">
+    <div><dt>Pročitajte ugovor prije potpisivanja</dt><dd>Podvucite sve obaveze i rokove: rok za nabavku, rok za izvještaj, period održivosti, način pravdanja. Prepišite rokove u kalendar.</dd></div>
+    <div><dt>Kupujte tačno ono što je u planu</dt><dd>Iste stavke, kod istih dobavljača kao na profakturama. Svaku izmjenu unaprijed pisanim putem dogovorite sa davaocem sredstava.</dd></div>
+    <div><dt>Plaćajte preko računa</dt><dd>Kad god je moguće, plaćajte bezgotovinski. Izvod sa računa je najjači dokaz o plaćanju.</dd></div>
+    <div><dt>Čuvajte dokumentaciju</dt><dd>Fakture, otpremnice, izvode, ugovore o radu i dokaze o uplati doprinosa čuvajte u jednoj fascikli, poređane po datumu. Napravite i skenirane kopije.</dd></div>
+    <div><dt>Ispunite obavezu održivosti</dt><dd>Kod ZZZCG programa to znači isplatu zarade i doprinosa osnivaču najmanje 12 mjeseci. Kod MER programa, mjerljiv rast koji ste naveli u planu.</dd></div>
+    <div><dt>Budite spremni za kontrolu</dt><dd>Davalac sredstava može obići poslovni prostor i provjeriti da li se oprema nalazi tamo i koristi namjenski.</dd></div>
+  </dl>
+
+</section>
+
+<section class="page-break">
+  <p class="part-label">Prilog</p>
+  <h2 class="part">Rječnik pojmova</h2>
+  <p class="part-lead">Izrazi koji se pojavljuju u javnim pozivima, ugovorima i u ovom vodiču.</p>
+  <dl class="items">
+    <div><dt>Profaktura (predračun)</dt><dd>Zvanična ponuda dobavljača sa cijenom, prije kupovine. Osnov za svaku stavku u investiciji.</dd></div>
+    <div><dt>Refundacija</dt><dd>Model u kome prvo sami plaćate, a dio novca vam se vraća nakon pravdanja.</dd></div>
+    <div><dt>Avansna isplata</dt><dd>Model u kome novac dobijate unaprijed, a kasnije pravdate kako ste ga potrošili.</dd></div>
+    <div><dt>Sopstveno učešće</dt><dd>Dio investicije koji pokrivate sopstvenim novcem.</dd></div>
+    <div><dt>PDV</dt><dd>Porez na dodatu vrijednost. Grantovi ga najčešće ne pokrivaju.</dd></div>
+    <div><dt>CRPS</dt><dd>Centralni registar privrednih subjekata, gdje se registruju preduzetnici i društva.</dd></div>
+    <div><dt>CBCG</dt><dd>Centralna banka Crne Gore.</dd></div>
+    <div><dt>PIB / JMBG</dt><dd>Poreski identifikacioni broj / jedinstveni matični broj građana.</dd></div>
+    <div><dt>MMSP</dt><dd>Mikro, mala i srednja preduzeća.</dd></div>
+    <div><dt>OSI</dt><dd>Osobe sa invaliditetom.</dd></div>
+    <div><dt>Tačka pokrića</dt><dd>Prihod pri kome biznis pokriva sve troškove, bez dobiti i bez gubitka.</dd></div>
+  </dl>
+</section>
+
+<!-- ============ RADNI LISTOVI ============ -->
+<section class="page-break">
+  <div class="ws-head"><h2>Radni list 1: Osnovni podaci i rezime</h2><span>Uz poglavlje 1</span></div>
+  <div class="two">
+    <div class="field"><label>Naziv (tačno kao u registraciji)</label><div class="lines l1"></div></div>
+    <div class="field"><label>Adresa</label><div class="lines l1"></div></div>
+    <div class="field"><label>JMBG</label><div class="lines l1"></div></div>
+    <div class="field"><label>PIB</label><div class="lines l1"></div></div>
+  </div>
+  <div class="field"><label>Program i institucija <span class="hint">(npr. ZZZCG, javni poziv iz 2026)</span></label><div class="lines l1"></div></div>
+  <div class="field"><label>Elevator pitch: šta radite i gdje</label><div class="lines l2"></div></div>
+  <div class="field"><label>Elevator pitch: kome prodajete i zašto baš vi</label><div class="lines l2"></div></div>
+  <div class="field"><label>Elevator pitch: šta tražite i koji je društveni efekat</label><div class="lines l2"></div></div>
+  <div class="field"><label>Namjena sredstava <span class="hint">(jedna rečenica)</span></label><div class="lines l2"></div></div>
+  <table class="blank">
+    <thead><tr><th>Finansijska konstrukcija</th><th class="r" style="width:35%">Iznos (€)</th></tr></thead>
+    <tbody>
+      <tr><td>Ukupna investicija bez PDV-a</td><td></td></tr>
+      <tr><td>PDV</td><td></td></tr>
+      <tr><td>Traženi iznos (grant)</td><td></td></tr>
+      <tr><td>Sopstveno učešće</td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="field"><label>Ciljne grupe koje donose dodatne bodove <span class="hint">(mladi do 30, žene, sjever, OSI…)</span></label><div class="lines l2"></div></div>
+</section>
+
+<section class="page-break">
+  <div class="ws-head"><h2>Radni list 2: Kupci i konkurencija</h2><span>Uz poglavlje 3</span></div>
+  <table class="blank tall">
+    <thead><tr><th style="width:30%">Segment kupaca</th><th>Ko su i gdje su</th><th>Kada i zašto kupuju</th></tr></thead>
+    <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+  </table>
+  <table class="blank tall">
+    <thead><tr><th style="width:30%">Lokalni dobavljač</th><th>Šta nabavljam</th><th>Zašto baš on</th></tr></thead>
+    <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+  </table>
+  <table class="blank tall">
+    <thead><tr><th style="width:30%">Konkurent</th><th>Prednosti</th><th>Slabosti</th></tr></thead>
+    <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+  </table>
+  <div class="field"><label>Moja konkurentska prednost</label><div class="lines l3"></div></div>
+</section>
+
+<section class="page-break">
+  <div class="ws-head"><h2>Radni list 3: Investicija</h2><span>Uz poglavlje 6</span></div>
+  <table class="blank">
+    <thead><tr><th style="width:28%">Stavka</th><th>Dobavljač i br. profakture</th><th class="r">Bez PDV-a</th><th class="r">PDV</th><th class="r">Ukupno</th><th>Grant / sopstveno</th></tr></thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr class="total"><td>Ukupno</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="box">
+    <span class="t">Provjera prije prepisivanja u plan</span>
+    <ul>
+      <li>Da li svaka stavka ima profakturu na moje ime?</li>
+      <li>Da li zbir kolone „Bez PDV-a" za stavke iz granta odgovara traženom iznosu?</li>
+      <li>Da li je PDV upisan kao sopstveno učešće, ako ga program ne pokriva?</li>
+    </ul>
+  </div>
+</section>
+
+<section class="page-break">
+  <div class="ws-head"><h2>Radni list 4: Troškovi, prihodi i tačka pokrića</h2><span>Uz poglavlje 6</span></div>
+  <div class="two">
+    <table class="blank">
+      <thead><tr><th>Mjesečni trošak</th><th class="r" style="width:35%">€</th></tr></thead>
+      <tbody>
+        <tr><td>Zakup</td><td></td></tr>
+        <tr><td>Zarada osnivača sa doprinosima</td><td></td></tr>
+        <tr><td>Zarade zaposlenih sa doprinosima</td><td></td></tr>
+        <tr><td>Režije</td><td></td></tr>
+        <tr><td>Materijal i sirovine</td><td></td></tr>
+        <tr><td>Knjigovodstvo</td><td></td></tr>
+        <tr><td>Promocija</td><td></td></tr>
+        <tr><td>Ostalo</td><td></td></tr>
+        <tr class="total"><td>Ukupno (A)</td><td></td></tr>
+      </tbody>
+    </table>
+    <table class="blank">
+      <thead><tr><th>Proizvod / usluga</th><th class="r">Kom/dan</th><th class="r">Cijena</th><th class="r">€/dan</th></tr></thead>
+      <tbody>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr class="total"><td colspan="3">Ukupno dnevno (B)</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <table class="blank">
+    <thead><tr><th>Računica</th><th class="r" style="width:35%">Rezultat</th></tr></thead>
+    <tbody>
+      <tr><td>Broj radnih dana u mjesecu (C)</td><td></td></tr>
+      <tr><td>Mjesečni prihod: B × C</td><td></td></tr>
+      <tr><td>Tačka pokrića dnevno: A ÷ C</td><td></td></tr>
+      <tr><td>Rezerva dnevno: B − (A ÷ C)</td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="box">
+    <span class="t">Ako je rezerva negativna</span>
+    <p>Plan u ovom obliku ne pokriva troškove. Smanjite troškove, preispitajte cijene ili realno povećajte obim prodaje, i tek onda ga predajte. Komisija ovu računicu radi sama.</p>
+  </div>
+  <p class="small muted" style="margin-top:8mm">Vodič nije zvanična publikacija navedenih institucija. Grb Bijelog Polja: Bjoertvedt, Wikimedia Commons, CC BY-SA 3.0.</p>
+</section>
+
+</body>
+</html>

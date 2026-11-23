@@ -192,6 +192,24 @@
   .done-msg.show { display: block; }
   .link-btn { background: none; border: 0; padding: 8px 0; margin-top: 8px; color: var(--muted); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
 
+  /* Download */
+  .download { background: var(--bg-2); }
+  .dl-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px 20px; display: grid; gap: 20px; max-width: 820px;
+  }
+  .dl-card h2 { font-size: clamp(24px, 6vw, 32px); }
+  .dl-card p:not(.label) { margin-top: 10px; color: #475569; }
+  .dl-card ul { margin: 14px 0 0; padding-left: 18px; color: var(--body); }
+  .dl-card li { margin-bottom: 4px; }
+  .dl-card .dl-meta { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .dl-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .dl-actions .btn { width: 100%; }
+  @media (min-width: 720px) {
+    .dl-card { grid-template-columns: 1fr auto; align-items: end; padding: 32px; }
+    .dl-actions .btn { width: auto; }
+  }
+
   /* Footer */
   .footer { background: var(--navy); color: #94a3b8; padding: 44px 0 calc(40px + env(safe-area-inset-bottom)); }
   .footer h2 { color: #fff; font-size: 24px; }
@@ -267,6 +285,7 @@
           <li><a href="#izvori"><span class="n">Dio I</span><span class="t">Izvori finansiranja<span class="d">ZZZCG, Ministarstvo, opštinski fondovi</span></span></a></li>
           <li><a href="#biznis-plan"><span class="n">Dio II</span><span class="t">Biznis plan<span class="d">Šest poglavlja, korak po korak</span></span></a></li>
           <li><a href="#checklista"><span class="n">Dio III</span><span class="t">Checklista za predaju</span></a></li>
+          <li><a href="#pdf"><span class="n">PDF</span><span class="t">Vodič za štampu<span class="d">Detaljnija verzija sa primjerima i radnim listovima</span></span></a></li>
         </ol>
       </nav>
     </div>
@@ -477,6 +496,29 @@
 
       <p class="done-msg" id="done-msg" role="status">Sve je provjereno. Spremni ste za predaju. Srećno!</p>
       <button type="button" class="link-btn" id="reset">Poništi označeno</button>
+    </div>
+  </section>
+
+  <!-- PDF -->
+  <section class="download" id="pdf">
+    <div class="wrap">
+      <div class="dl-card">
+        <div>
+          <p class="label">Vodič za štampu</p>
+          <h2>Preuzmite kompletan vodič u PDF-u</h2>
+          <p>Detaljnija verzija od ove stranice, spremna za štampu na A4 papiru:</p>
+          <ul>
+            <li>primjer biznis plana (zanatska pekara) kroz svih šest poglavlja</li>
+            <li>tabele investicije, troškova, prihoda i tačke pokrića</li>
+            <li>okvirni rokovi, šta raditi nakon odobrenja i rječnik pojmova</li>
+            <li>radni listovi za popunjavanje rukom</li>
+          </ul>
+          <p class="dl-meta">PDF · A4 · 22 strane · 1,1 MB</p>
+        </div>
+        <div class="dl-actions">
+          <a class="btn" href="vodic-bespovratna-sredstva.pdf" download="Vodic-bespovratna-sredstva.pdf">Preuzmi PDF</a>
+        </div>
+      </div>
     </div>
   </section>
 
