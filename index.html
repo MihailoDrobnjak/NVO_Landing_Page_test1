@@ -1,149 +1,746 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="sr-Latn-ME">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vodič za NVO Projekte | Od Ideje do Realizacije</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vodič za bespovratna sredstva u Crnoj Gori</title>
+<meta name="description" content="Praktični vodič za apliciranje za bespovratna sredstva u Crnoj Gori: izvori finansiranja, biznis plan korak po korak i kontrolna lista za predaju.">
+<meta name="theme-color" content="#0f172a">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vodič za bespovratna sredstva u Crnoj Gori">
+<meta property="og:description" content="Izvori finansiranja, biznis plan korak po korak i kontrolna lista za predaju. Studija slučaja: Opština Bijelo Polje.">
+<meta property="og:url" content="https://nvo-landing-page-test1.vercel.app/">
+<meta property="og:locale" content="sr_ME">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ea580c'/%3E%3Cpath d='M14 7a9 9 0 1 0 9.5 11H14z' fill='%23fff'/%3E%3Cpath d='M17 5v10h10A10 10 0 0 0 17 5z' fill='%23fff' opacity='.75'/%3E%3C/svg%3E">
 
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        pastel: {
-                            50: '#FDF6F0',
-                            100: '#F5E6DA',
-                            200: '#FFDDC1',
-                            300: '#FFABAB',
-                            400: '#FF8B94',
-                            500: '#FFB3BA',
-                            600: '#FFDAB9',
-                            700: '#D5AAFF',
-                            800: '#ACE7FF',
-                            900: '#C7CEEA'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        .pastel-blob {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(50px);
-            z-index: -1;
-            opacity: 0.7;
-        }
-    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #0f172a;
+    --navy-2: #1e293b;
+    --navy-line: #334155;
+    --ink: #0f172a;
+    --body: #334155;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #f8fafc;
+    --bg-2: #f1f5f9;
+    --white: #ffffff;
+
+    --orange: #ea580c;
+    --orange-soft: #fff1e6;
+    --blue: #0284c7;
+    --blue-soft: #e0f2fe;
+    --green: #16a34a;
+    --green-soft: #dcfce7;
+    --red: #dc2626;
+    --red-text: #be123c;
+    --red-soft: #fef2f2;
+    --indigo: #2563eb;
+    --indigo-soft: #dbeafe;
+    --slate-soft: #e2e8f0;
+
+    --radius: 16px;
+    --radius-sm: 12px;
+    --head: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wrap: 1080px;
+    --pad: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--body);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--head); color: var(--ink); line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  strong { color: var(--ink); font-weight: 600; }
+  a { color: inherit; }
+  svg.i { width: 1em; height: 1em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+  section { padding: 56px 0; }
+
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--white); color: var(--ink); padding: 8px 12px; border-radius: 8px; z-index: 100; }
+  .skip:focus { left: 8px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(15, 23, 42, 0.92);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-top: env(safe-area-inset-top);
+  }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-family: var(--head); font-weight: 700; font-size: 17px; }
+  .brand-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--orange); display: grid; place-items: center; font-size: 17px; color: #fff; }
+  .topbar-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--orange); color: #fff; text-decoration: none;
+    font-weight: 600; font-size: 14px; padding: 8px 14px; border-radius: 999px;
+  }
+  .progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%; background: var(--orange); transform-origin: 0 50%; transform: scaleX(0); }
+
+  /* ---------- Hero ---------- */
+  .hero { background: var(--navy); color: #cbd5e1; position: relative; overflow: hidden; padding: 76px 0 56px; }
+  .hero-grid { display: grid; gap: 32px; position: relative; z-index: 1; }
+  .eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 14px; }
+  .hero .eyebrow { color: var(--orange); }
+  .hero h1 { color: #fff; font-size: clamp(32px, 8.4vw, 56px); font-weight: 700; }
+  .hero-sub { font-family: var(--head); font-weight: 600; color: #94a3b8; font-size: clamp(18px, 4.6vw, 24px); margin-top: 16px; line-height: 1.35; }
+  .hero-card {
+    margin-top: 28px; background: var(--navy-2); border: 1px solid var(--navy-line);
+    border-radius: var(--radius); padding: 20px 22px; color: #cbd5e1; font-size: 16px;
+  }
+  .hero-card p + p { margin-top: 12px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; font-family: var(--sans);
+    transition: transform .15s ease, background-color .15s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--orange); color: #fff; flex: 1 1 100%; }
+  .btn-primary:hover { background: #c2410c; }
+  .btn-ghost { background: transparent; color: #e2e8f0; border: 1px solid var(--navy-line); flex: 1 1 calc(50% - 5px); }
+  .btn-ghost:hover { background: var(--navy-2); }
+  .hero-art { display: none; }
+  .hero-blob {
+    position: absolute; right: -70px; top: -130px; width: 200px; height: 200px; border-radius: 50%;
+    background: var(--orange); opacity: 0.9;
+  }
+  .hero-blob svg { position: absolute; left: 44px; bottom: 26px; width: 56px; height: 56px; color: rgba(255,255,255,0.55); }
+
+  /* ---------- Key rule ---------- */
+  .center { text-align: center; }
+  .icon-chip {
+    width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; flex: none;
+  }
+  .chip-orange { background: var(--orange-soft); color: var(--orange); }
+  .chip-blue { background: var(--blue-soft); color: var(--blue); }
+  .chip-green { background: var(--green-soft); color: var(--green); }
+  .chip-red { background: #fee2e2; color: var(--red); }
+  .chip-indigo { background: var(--indigo-soft); color: var(--indigo); }
+  .chip-slate { background: var(--slate-soft); color: var(--ink); }
+  .rule .icon-chip { margin: 0 auto 20px; }
+  .rule h2 { font-size: clamp(26px, 6.4vw, 40px); max-width: 720px; margin: 0 auto; }
+  .quote {
+    margin: 28px auto 0; max-width: 900px; text-align: left;
+    background: var(--bg); border-left: 5px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 22px 22px 22px 24px;
+  }
+  .quote .lead { font-size: 19px; font-weight: 600; color: var(--ink); line-height: 1.45; }
+  .quote p + p { margin-top: 12px; color: #475569; }
+
+  /* ---------- Section heads ---------- */
+  .part { background: var(--bg-2); }
+  .part-head { margin-bottom: 28px; }
+  .part-head .eyebrow { color: #475569; }
+  .part-head.blue .eyebrow { color: var(--blue); }
+  .part-head h2 { font-size: clamp(26px, 6.4vw, 38px); }
+  .part-head p { font-size: 18px; color: #475569; margin-top: 10px; }
+
+  /* ---------- Sources ---------- */
+  .sources { display: grid; gap: 16px; }
+  .card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+  }
+  .card-head { display: flex; align-items: center; gap: 14px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .card-head h3 { font-size: 21px; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .facts li { font-size: 16px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+  /* ---------- Chapter nav ---------- */
+  .chapnav {
+    position: sticky; top: calc(56px + env(safe-area-inset-top)); z-index: 40;
+    background: rgba(255,255,255,0.96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .chapnav ol {
+    list-style: none; margin: 0 auto; padding: 10px var(--pad); max-width: var(--wrap);
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .chapnav ol::-webkit-scrollbar { display: none; }
+  .chapnav a {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    padding: 7px 13px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    text-decoration: none; color: #475569; background: var(--bg-2); border: 1px solid transparent;
+  }
+  .chapnav a .n { font-family: var(--head); color: var(--muted); }
+  .chapnav a.active { background: var(--navy); color: #fff; }
+  .chapnav a.active .n { color: var(--orange); }
+
+  /* ---------- Chapters ---------- */
+  .guide-intro { padding-top: 48px; padding-bottom: 8px; }
+  .chapter { padding: 44px 0; border-top: 1px solid var(--line); }
+  .chapter:first-of-type { border-top: 0; }
+  .chapter.alt { background: var(--bg); }
+  .chap-head { display: flex; align-items: flex-start; gap: 14px; }
+  .chap-num { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; }
+  .chap-head h3 { font-size: clamp(23px, 5.8vw, 32px); }
+  .chap-lead { font-size: 18px; color: #475569; margin-top: 14px; }
+  .chap-lead.warn { color: var(--red); font-weight: 500; }
+
+  .grid-2 { display: grid; gap: 12px; margin-top: 22px; }
+  .item {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px 18px;
+  }
+  .item.flat { background: var(--bg); border-color: transparent; }
+  .item em { color: #475569; }
+  .callout {
+    margin-top: 20px; display: flex; gap: 12px; align-items: flex-start;
+    background: var(--red-soft); color: var(--red-text); border-left: 4px solid #ef4444;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; font-weight: 500;
+  }
+  .callout svg { font-size: 20px; margin-top: 2px; }
+
+  .mk-grid { display: grid; gap: 12px; margin-top: 22px; }
+  .mk { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+  .mk h4 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font-family: var(--head); font-size: 19px; color: var(--ink); }
+  .mk h4 svg { color: var(--orange); font-size: 22px; }
+  .mk p { color: #475569; }
+
+  .res-grid { display: grid; gap: 12px; margin-top: 22px; }
+  .res { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; text-align: center; }
+  .res .icon-chip { margin: 0 auto 14px; }
+  .res h4 { margin: 0 0 8px; font-family: var(--head); font-size: 19px; color: var(--ink); line-height: 1.25; }
+  .res p { color: #475569; font-size: 15.5px; }
+
+  /* Chapter 6 (dark) */
+  .chapter.dark { background: var(--navy); border-top: 0; color: #94a3b8; }
+  .chapter.dark h3 { color: #fff; }
+  .chapter.dark .chap-num { color: #94a3b8; }
+  .chapter.dark .chap-lead { color: #fb923c; }
+  .chapter.dark hr { border: 0; border-top: 1px solid var(--navy-line); margin: 24px 0; }
+  .fin-grid { display: grid; gap: 14px; }
+  .fin {
+    background: var(--navy-2); border-radius: var(--radius); padding: 18px 20px 18px 22px;
+    border-left: 4px solid var(--c, #38bdf8);
+  }
+  .fin h4 { margin: 0 0 6px; font-family: var(--head); font-size: 19px; color: #fff; }
+  .fin p { color: #cbd5e1; font-size: 15.5px; }
+  .fin .ex { display: block; margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.05); color: #e2e8f0; font-size: 15px; }
+
+  /* ---------- Checklist ---------- */
+  .check-section { background: var(--white); }
+  .check-head h2 { font-size: clamp(26px, 6.4vw, 38px); }
+  .check-head .stat { color: var(--red); font-weight: 700; font-size: 18px; margin-top: 10px; }
+  .check-meter { margin-top: 22px; display: flex; align-items: center; gap: 12px; }
+  .meter { flex: 1; height: 8px; background: var(--bg-2); border-radius: 999px; overflow: hidden; }
+  .meter span { display: block; height: 100%; width: 0; background: #10b981; border-radius: 999px; transition: width .3s ease; }
+  .meter-label { font-weight: 600; font-size: 14px; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .checklist { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+  .checklist label {
+    display: flex; gap: 14px; align-items: flex-start; cursor: pointer;
+    background: var(--bg); border: 1px solid transparent; border-radius: var(--radius-sm); padding: 16px;
+    transition: background-color .15s ease, border-color .15s ease;
+  }
+  .checklist input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .box {
+    width: 26px; height: 26px; border-radius: 7px; border: 2px solid #10b981; flex: none; margin-top: 1px;
+    display: grid; place-items: center; color: transparent; background: #fff; transition: background-color .15s ease;
+  }
+  .box svg { font-size: 16px; stroke-width: 3; }
+  .checklist input:checked + .box { background: #10b981; color: #fff; }
+  .checklist input:checked ~ .txt { color: var(--muted); }
+  .checklist input:checked ~ .txt strong { color: #475569; }
+  .checklist input:focus-visible + .box { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .checklist label:has(input:checked) { background: #ecfdf5; border-color: #a7f3d0; }
+  .done-msg {
+    display: none; margin-top: 16px; padding: 14px 16px; border-radius: var(--radius-sm);
+    background: #ecfdf5; color: #047857; font-weight: 600;
+  }
+  .done-msg.show { display: block; }
+  .link-btn { background: none; border: 0; padding: 8px 0; margin-top: 8px; color: var(--muted); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
+
+  /* ---------- Footer ---------- */
+  .footer { background: var(--navy); color: #94a3b8; padding: 44px 0 calc(44px + env(safe-area-inset-bottom)); }
+  .footer h2 { color: #fff; font-size: 24px; }
+  .footer p { margin-top: 8px; }
+  .footer .hero-actions { margin-top: 20px; }
+  .footer small { display: block; margin-top: 32px; font-size: 13px; color: #64748b; }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px);
+    background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 999px; font-weight: 600; font-size: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 60;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+  /* ---------- Larger screens ---------- */
+  @media (min-width: 720px) {
+    :root { --pad: 32px; }
+    section { padding: 80px 0; }
+    .sources { grid-template-columns: 1fr 1fr; }
+    .sources .card:first-child { grid-column: 1 / -1; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .res-grid { grid-template-columns: repeat(3, 1fr); }
+    .fin-grid { grid-template-columns: 1fr 1fr; }
+    .chapter { padding: 64px 0; }
+    .btn-primary, .btn-ghost { flex: 0 0 auto; }
+    .mk-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+    .mk-layout .mk-grid { margin-top: 0; }
+  }
+  @media (min-width: 960px) {
+    .hero { padding: 0; }
+    .hero-blob { display: none; }
+    .hero-grid { grid-template-columns: 1.6fr 1fr; gap: 0; min-height: 560px; }
+    .hero-copy { padding: 72px 56px 72px 0; }
+    .hero-art {
+      display: grid; place-items: center; background: var(--orange); color: rgba(255,255,255,0.4);
+      margin-right: calc(-1 * max(var(--pad), (100vw - var(--wrap)) / 2 + var(--pad)));
+    }
+    .hero-art svg { width: 200px; height: 200px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
 </head>
-<body class="bg-pastel-50 text-slate-800 font-sans antialiased selection:bg-pastel-400 selection:text-white">
+<body>
 
-<div class="pastel-blob bg-pastel-200" style="top: -100px; right: -50px;"></div>
-<div class="pastel-blob bg-pastel-900" style="bottom: 100px; left: -100px;"></div>
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-pie" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1M12 18h1M7 18h1"/></symbol>
+    <symbol id="i-landmark" viewBox="0 0 24 24"><path d="M3 22h18"/><path d="M6 18v-7M10 18v-7M14 18v-7M18 18v-7"/><path d="M12 2 20 7H4z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6M10 22h4"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-ad" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6.5 15.5 9 8.5l2.5 7M7.4 13h3.2"/><path d="M14 8.5v7h1.5a3.5 3.5 0 0 0 0-7z"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9 5 3h14l2 6"/><path d="M3 9h18v1a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M5 12.5V21h14v-8.5"/><path d="M10 21v-5h4v5"/></symbol>
+    <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M5 22h14"/><path d="M19.27 13.73A2.5 2.5 0 0 0 17.5 13h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.5c0-.66-.26-1.3-.73-1.77Z"/><path d="M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-6 0c0 2 1 2 1 3.5V13"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-checklist" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8M13 12h8M13 18h8"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.83 3.98"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  </defs>
+</svg>
 
-<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-pastel-100 z-50">
-    <div class="max-w-md mx-auto px-5 py-4 flex justify-between items-center">
-        <div class="font-extrabold text-pastel-400 text-xl tracking-tight">NVO Vodič</div>
-        <a href="#preuzmi" class="bg-pastel-400 hover:bg-pastel-500 text-white text-sm font-semibold py-2 px-6 rounded-full shadow-md active:scale-95 transition-all">
-            Započni
-        </a>
+<a class="skip" href="#sadrzaj">Preskoči na sadržaj</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Vodič za grantove, na vrh">
+      <span class="brand-mark"><svg class="i"><use href="#i-pie"/></svg></span>
+      Vodič za grantove
+    </a>
+    <a class="topbar-cta" href="#checklista"><svg class="i"><use href="#i-checklist"/></svg>Checklista</a>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="sadrzaj">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-blob" aria-hidden="true"><svg class="i"><use href="#i-pie"/></svg></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Uvod: anatomija bespovratnih sredstava</p>
+        <h1>Sveobuhvatni vodič za apliciranje za bespovratna sredstva u Crnoj Gori</h1>
+        <p class="hero-sub">Praktični priručnik sa studijom slučaja: Opština Bijelo Polje</p>
+        <div class="hero-card">
+          <p>Bespovratna sredstva (grantovi) predstavljaju namjenska, nepovratna finansijska sredstva koja dodjeljuju državne institucije, lokalne samouprave ili međunarodni fondovi.</p>
+          <p>Ovaj vodič pruža pregled izvora i korak-po-korak instrukcije za pisanje biznis plana.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pravilo">Počni vodič <svg class="i"><use href="#i-down"/></svg></a>
+          <a class="btn btn-ghost" href="#izvori">Izvori</a>
+          <a class="btn btn-ghost" href="#biznis-plan">Biznis plan</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><svg class="i"><use href="#i-pie"/></svg></div>
     </div>
-</nav>
+  </section>
 
-<main class="w-full max-w-md mx-auto flex flex-col pt-28 pb-16 px-5 overflow-hidden">
+  <!-- KEY RULE -->
+  <section class="rule center" id="pravilo">
+    <div class="wrap">
+      <div class="icon-chip chip-orange" aria-hidden="true"><svg class="i"><use href="#i-gem"/></svg></div>
+      <h2>Ključno pravilo koje svaki aplikant mora razumjeti:</h2>
+      <div class="quote">
+        <p class="lead">Donator ne investira novac da bi vaša firma ostvarila profit, već da bi vaš profit generisao širi društveni uticaj.</p>
+        <p>Taj uticaj se ogleda kroz smanjenje nezaposlenosti, povećanje izvoza, uvođenje inovacija ili osnaživanje marginalizovanih grupa (žensko preduzetništvo).</p>
+      </div>
+    </div>
+  </section>
 
-    <header class="py-12 text-center flex flex-col items-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pastel-100 text-pastel-400 text-xs font-bold mb-8 border border-pastel-200 shadow-inner">
-            Prototip platforme
+  <!-- DIO I -->
+  <section class="part" id="izvori">
+    <div class="wrap">
+      <div class="part-head">
+        <p class="eyebrow">Dio I</p>
+        <h2>Krovni izvori finansiranja u Crnoj Gori</h2>
+        <p>Identifikujte instituciju čiji program najviše odgovara vašem statusu.</p>
+      </div>
+
+      <div class="sources">
+        <article class="card">
+          <div class="card-head">
+            <div class="icon-chip chip-blue" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></div>
+            <h3>1. Zavod za zapošljavanje Crne Gore (ZZZCG)</h3>
+          </div>
+          <ul class="facts">
+            <li><strong>Fokus programa:</strong> Samozapošljavanje i prelazak iz nezaposlenosti u formalni biznis.</li>
+            <li><strong>Ciljna grupa:</strong> Lica na evidenciji nezaposlenih. Dodatno se boduju mladi do 30 godina, žene i lica sa sjevera.</li>
+            <li><strong>Model isplate:</strong> Namjenski, u ratama ili odjednom nakon odobrenja.</li>
+            <li><strong>Ključni zahtjev:</strong> Održivost radnog mjesta. Dokazati isplatu doprinosa i zarade osnivaču najmanje 12 mjeseci.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="icon-chip chip-orange" aria-hidden="true"><svg class="i"><use href="#i-factory"/></svg></div>
+            <h3>2. Ministarstvo (MER)</h3>
+          </div>
+          <ul class="facts">
+            <li><strong>Fokus:</strong> Jačanje konkurentnosti postojećih MMSP, oprema i digitalizacija.</li>
+            <li><strong>Ciljna grupa:</strong> Registrovana preduzeća sa pozitivnim bilansom.</li>
+            <li><strong>Model:</strong> Refundacija. Preduzeće investira, MER vraća 40% do 70%.</li>
+            <li><strong>Zahtjev:</strong> Mjerljiv rast (prihodi, zaposleni, izvoz).</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="icon-chip chip-green" aria-hidden="true"><svg class="i"><use href="#i-landmark"/></svg></div>
+            <h3>3. Opštinski fondovi</h3>
+          </div>
+          <ul class="facts">
+            <li><strong>Fokus:</strong> Lokalna ekonomija, žensko preduzetništvo, poljoprivreda.</li>
+            <li><strong>Ciljna grupa:</strong> Lica i preduzeća registrovana u toj opštini.</li>
+            <li><strong>Model:</strong> Najčešće avansno uz odobren plan.</li>
+            <li><strong>Zahtjev:</strong> Stroga obaveza namjenskog pravdanja računa.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIO II -->
+  <div id="biznis-plan">
+    <div class="wrap guide-intro">
+      <div class="part-head blue">
+        <p class="eyebrow">Dio II: Praktični vodič (Opština Bijelo Polje)</p>
+        <h2>Biznis plan, poglavlje po poglavlje</h2>
+        <p>Prikupite precizne podatke prije samog tehničkog unosa.</p>
+      </div>
+    </div>
+
+    <nav class="chapnav" aria-label="Poglavlja biznis plana">
+      <ol>
+        <li><a href="#p1"><span class="n">1</span> Rezime</a></li>
+        <li><a href="#p2"><span class="n">2</span> Ideja i tim</a></li>
+        <li><a href="#p3"><span class="n">3</span> Tržište</a></li>
+        <li><a href="#p4"><span class="n">4</span> Marketing</a></li>
+        <li><a href="#p5"><span class="n">5</span> Resursi</a></li>
+        <li><a href="#p6"><span class="n">6</span> Finansije</a></li>
+        <li><a href="#checklista"><span class="n">✓</span> Checklista</a></li>
+      </ol>
+    </nav>
+
+    <!-- Poglavlje 1 -->
+    <section class="chapter" id="p1">
+      <div class="wrap">
+        <div class="chap-head">
+          <div class="icon-chip chip-orange" aria-hidden="true"><svg class="i"><use href="#i-file"/></svg></div>
+          <div>
+            <span class="chap-num">Poglavlje 1</span>
+            <h3>Rezime biznis plana i osnovni podaci</h3>
+          </div>
         </div>
-
-        <h1 class="text-4xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
-            Pretvorite ideju u <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-pastel-400 to-pastel-700">odobren projekat</span>
-        </h1>
-
-        <p class="text-slate-600 mb-10 text-base leading-relaxed">
-            Jasan sistem za pisanje, budžetiranje i slanje projekata za NVO i samostalne projektante. Bez gubljenja u birokratiji.
-        </p>
-
-        <a href="#proces" class="w-full bg-pastel-900 hover:bg-pastel-800 text-white font-semibold py-4 rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
-            Kako funkcioniše?
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-        </a>
-    </header>
-
-    <section id="proces" class="py-16 mt-8 relative">
-        <div class="absolute inset-0 z-[-2]">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover opacity-10" alt="Tim radi">
-            <div class="absolute inset-0 bg-gradient-to-b from-pastel-50 via-transparent to-pastel-50"></div>
+        <p class="chap-lead warn">Ovaj dio se uvijek piše na samom kraju. Komisija ovdje donosi odluku da li plan vrijedi čitati.</p>
+        <div class="grid-2">
+          <div class="item flat"><strong>Identifikacioni podaci:</strong> Tačan naziv, adresa u BP, JMBG, PIB.</div>
+          <div class="item flat"><strong>Elevator Pitch:</strong> U 3 rečenice opišite djelatnost bez fraza. <em>(Npr: Otvaranje zanatske pekare…)</em></div>
+          <div class="item flat"><strong>Finansijska konstrukcija:</strong> Jasno razdvojite traženi iznos od sopstvenog učešća.</div>
+          <div class="item flat"><strong>Namjena sredstava:</strong> Jedna rečenica koja definiše predmet nabavke.</div>
         </div>
-
-        <h2 class="text-2xl font-bold text-slate-900 mb-12 text-center">Faze kreiranja projekta</h2>
-
-        <div class="relative border-l-2 border-pastel-300 ml-5 space-y-16 pb-4">
-
-            <div class="relative pl-10">
-                <div class="absolute -left-[19px] top-0 bg-pastel-100 border-4 border-pastel-600 w-9 h-9 rounded-full flex items-center justify-center font-bold text-pastel-600 text-base shadow-sm">1</div>
-                <h3 class="text-lg font-bold text-slate-900 mb-3">Razrada i mapiranje</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Pretvaranje sirove ideje u logičan okvir koji donatori razumeju. Definisanje pravih ciljeva i korisnika.</p>
-            </div>
-
-            <div class="relative pl-10">
-                <div class="absolute -left-[19px] top-0 bg-pastel-100 border-4 border-pastel-700 w-9 h-9 rounded-full flex items-center justify-center font-bold text-pastel-700 text-base shadow-sm">2</div>
-                <h3 class="text-lg font-bold text-slate-900 mb-3">Narativ i budžet</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Pisanje jasne projektne aplikacije i postavljanje preciznog budžeta bez nepredviđenih troškova.</p>
-            </div>
-
-            <div class="relative pl-10">
-                <div class="absolute -left-[19px] top-0 bg-pastel-100 border-4 border-pastel-800 w-9 h-9 rounded-full flex items-center justify-center font-bold text-pastel-800 text-base shadow-sm">3</div>
-                <h3 class="text-lg font-bold text-slate-900 mb-3">Administracija</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Prikupljanje pravne dokumentacije i formiranje partnerstava. Checklist šta sve treba prije klika na "Pošalji".</p>
-            </div>
-
-            <div class="relative pl-10">
-                <div class="absolute -left-[19px] top-0 bg-pastel-100 border-4 border-pastel-900 w-9 h-9 rounded-full flex items-center justify-center font-bold text-pastel-900 text-base shadow-sm">4</div>
-                <h3 class="text-lg font-bold text-slate-900 mb-3">Realizacija</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">Vaš projekat je odobren! Šta sad? Vodič kroz pravila trošenja sredstava i izradu finalnog izveštaja.</p>
-            </div>
-
-        </div>
+      </div>
     </section>
 
-    <section id="preuzmi" class="py-12 mt-12 bg-white rounded-3xl p-8 shadow-[0_10px_35px_rgb(0,0,0,0.05)] border border-pastel-100 text-center relative overflow-hidden">
-
-        <div class="relative z-10">
-            <div class="bg-pastel-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-pastel-400 shadow-inner">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-4">Preuzmi besplatan šablon</h2>
-            <p class="text-slate-500 text-sm mb-10 leading-relaxed">Ostavi svoj email da dobiješ gotov Excel šablon za računanje budžeta i rani pristup Vodiču.</p>
-
-            <form onsubmit="event.preventDefault(); alert('Uspješno poslato! Prototip faza - pravi mejl će stići u pravoj verziji.');" class="flex flex-col gap-5">
-                <input type="email" placeholder="Tvoja email adresa" required class="w-full px-6 py-4 rounded-2xl bg-pastel-50 border border-pastel-100 focus:outline-none focus:ring-2 focus:ring-pastel-300 focus:bg-white transition-all text-sm">
-                <button type="submit" class="w-full bg-pastel-400 hover:bg-pastel-500 text-white font-bold py-4 rounded-2xl shadow-lg shadow-pastel-500/20 active:scale-95 transition-all text-sm">
-                    Pošalji mi materijal
-                </button>
-            </form>
+    <!-- Poglavlje 2 -->
+    <section class="chapter alt" id="p2">
+      <div class="wrap">
+        <div class="chap-head">
+          <div class="icon-chip chip-slate" aria-hidden="true"><svg class="i"><use href="#i-bulb"/></svg></div>
+          <div>
+            <span class="chap-num">Poglavlje 2</span>
+            <h3>Opis poslovne ideje, vizija i tim</h3>
+          </div>
         </div>
+        <p class="chap-lead">Dokazujete da razumijete problem koji rješavate i posjedujete kompetencije.</p>
+        <div class="grid-2">
+          <div class="item"><strong>Karakteristike proizvoda/usluge:</strong> Napravite strukturiran spisak (asortiman) onoga što nudite.</div>
+          <div class="item"><strong>Problem i rješenje:</strong> Koji tačno nedostatak rješavate? <em>(Npr. Nedostatak servisa mašina u krugu od 30km)</em></div>
+          <div class="item"><strong>Inovativnost:</strong> Definišite vašu dodatnu vrijednost (brža usluga, digitalno zakazivanje).</div>
+          <div class="item"><strong>Ljudski resursi:</strong> Povežite iskustvo, sertifikate i obrazovanje sa poslovnom idejom.</div>
+        </div>
+      </div>
     </section>
+
+    <!-- Poglavlje 3 -->
+    <section class="chapter" id="p3">
+      <div class="wrap">
+        <div class="chap-head">
+          <div class="icon-chip chip-red" aria-hidden="true"><svg class="i"><use href="#i-target"/></svg></div>
+          <div>
+            <span class="chap-num">Poglavlje 3</span>
+            <h3>Analiza tržišta i konkurencije</h3>
+          </div>
+        </div>
+        <div class="callout"><svg class="i" aria-hidden="true"><use href="#i-alert"/></svg><span>Izjave poput „naši kupci su svi građani" ili „nemamo konkurenciju" vode do gubitka bodova!</span></div>
+        <div class="grid-2" style="grid-template-columns: 1fr;">
+          <div class="item flat"><strong>Segmentacija kupaca:</strong> Precizno definišite ciljnu grupu <em>(umjesto „turisti", napišite „tranzitni turisti ka Đalovića klisuri")</em>.</div>
+          <div class="item flat"><strong>Tržište nabavke:</strong> Navedite lokalne dobavljače (pokazuje ekonomski patriotizam i umreženost).</div>
+          <div class="item flat"><strong>Matrica konkurencije:</strong> Identifikujte 3 direktna konkurenta, njihove prednosti, slabosti i <strong>vašu konkurentsku prednost</strong>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Poglavlje 4 -->
+    <section class="chapter alt" id="p4">
+      <div class="wrap mk-layout">
+        <div>
+          <div class="chap-head">
+            <div class="icon-chip chip-indigo" aria-hidden="true"><svg class="i"><use href="#i-megaphone"/></svg></div>
+            <div>
+              <span class="chap-num">Poglavlje 4</span>
+              <h3>Marketing plan i prodaja</h3>
+            </div>
+          </div>
+          <p class="chap-lead">Ovdje dokazujete kako ćete fizički isporučiti proizvod i naplatiti ga.</p>
+        </div>
+        <div class="mk-grid">
+          <div class="mk">
+            <h4><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>Politika cijena</h4>
+            <p>Obrazložite cijene za vaša 3 udarna proizvoda (strategija proboja ili premijum).</p>
+          </div>
+          <div class="mk">
+            <h4><svg class="i" aria-hidden="true"><use href="#i-truck"/></svg>Kanali distribucije</h4>
+            <p>Direktno u lokalu, online prodaja, dostavna služba, B2B ugovori.</p>
+          </div>
+          <div class="mk">
+            <h4><svg class="i" aria-hidden="true"><use href="#i-ad"/></svg>Promotivne aktivnosti</h4>
+            <p>Budite specifični: „Investiraćemo 150€ u sponzorisane objave na teritoriji BP".</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Poglavlje 5 -->
+    <section class="chapter" id="p5">
+      <div class="wrap">
+        <div class="chap-head">
+          <div class="icon-chip chip-blue" aria-hidden="true"><svg class="i"><use href="#i-clipboard"/></svg></div>
+          <div>
+            <span class="chap-num">Poglavlje 5</span>
+            <h3>Operativni plan i organizacija (Resursi)</h3>
+          </div>
+        </div>
+        <p class="chap-lead">Opština želi garanciju da će biznis profunkcionisati odmah nakon uplate.</p>
+        <div class="res-grid">
+          <div class="res">
+            <div class="icon-chip chip-blue" aria-hidden="true"><svg class="i"><use href="#i-store"/></svg></div>
+            <h4>Infrastruktura i poslovni prostor</h4>
+            <p>Navedite lokaciju (naselje, adresa) i kvadraturu. Jasno naznačite vlasništvo ili zakup.</p>
+          </div>
+          <div class="res">
+            <div class="icon-chip chip-orange" aria-hidden="true"><svg class="i"><use href="#i-stamp"/></svg></div>
+            <h4>Zakonodavni okvir i dozvole</h4>
+            <p>Sanitarna inspekcija, Uprava za bezbjednost hrane, odobrenje Sekretarijata.</p>
+          </div>
+          <div class="res">
+            <div class="icon-chip chip-green" aria-hidden="true"><svg class="i"><use href="#i-users"/></svg></div>
+            <h4>Plan zapošljavanja</h4>
+            <p>Prikažite dinamiku zapošljavanja (dodatno se boduju OSI, žene, mladi).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Poglavlje 6 -->
+    <section class="chapter dark" id="p6">
+      <div class="wrap">
+        <div class="chap-head">
+          <div class="icon-chip chip-orange" aria-hidden="true"><svg class="i"><use href="#i-coins"/></svg></div>
+          <div>
+            <span class="chap-num">Poglavlje 6</span>
+            <h3>Finansijski plan (Budžetiranje)</h3>
+          </div>
+        </div>
+        <p class="chap-lead">Srce biznis plana. Svaka brojka mora biti apsolutno tačna, realna i dokumentovana.</p>
+        <hr>
+        <div class="fin-grid">
+          <div class="fin" style="--c:#38bdf8">
+            <h4>Pravdanje investicije (Profakture)</h4>
+            <p>Zlatno pravilo grantova: Svaka stavka koju tražite mora biti pokrivena zvaničnom ponudom od registrovanog dobavljača.</p>
+          </div>
+          <div class="fin" style="--c:#ef4444">
+            <h4>Tretman PDV-a</h4>
+            <p>Sredstva najčešće NE pokrivaju PDV. Vi računate iznos bez PDV-a, dok obavezu poreza pokrivate sopstvenim sredstvima.</p>
+          </div>
+          <div class="fin" style="--c:#f59e0b">
+            <h4>Operativni troškovi (Rashodi)</h4>
+            <p>Detaljno popišite mjesečne troškove: plate, doprinosi, zakup, režije, knjigovodstvo i nabavka materijala.</p>
+          </div>
+          <div class="fin" style="--c:#10b981">
+            <h4>Projekcija prihoda</h4>
+            <p>Konzervativna procjena prodaje po danima.</p>
+            <span class="ex">Npr. „Da ostvarim 3.000€ mjesečno, moram uslužiti 5 klijenata dnevno po 25€."</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- DIO III -->
+  <section class="check-section" id="checklista">
+    <div class="wrap">
+      <div class="check-head">
+        <p class="eyebrow" style="color:#475569">Dio III</p>
+        <h2>Kontrolna lista (Checklista) za finalnu predaju</h2>
+        <p class="stat">30% aplikacija pada zbog administracije. Prije predaje provjerite:</p>
+      </div>
+
+      <div class="check-meter">
+        <div class="meter" aria-hidden="true"><span id="meter-fill"></span></div>
+        <span class="meter-label" id="meter-label" aria-live="polite">0 / 5 provjereno</span>
+      </div>
+
+      <ul class="checklist" id="checklist">
+        <li><label><input type="checkbox" data-k="brojevi"><span class="box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span><span class="txt"><strong>Usklađenost brojeva:</strong> Da li se ukupni iznosi u tekstu, tabelama i profakturama tačno poklapaju u cent?</span></label></li>
+        <li><label><input type="checkbox" data-k="dokumentacija"><span class="box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span><span class="txt"><strong>Aktuelnost dokumentacije:</strong> Da li su uvjerenja iz Poreske i CBCG mlađa od 30 dana?</span></label></li>
+        <li><label><input type="checkbox" data-k="potpisi"><span class="box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span><span class="txt"><strong>Potpisi i pečati:</strong> Da li je formular biznis plana ručno potpisan i pečatiran?</span></label></li>
+        <li><label><input type="checkbox" data-k="registracija"><span class="box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span><span class="txt"><strong>Registracija:</strong> Da li je priloženo važeće Rješenje o registraciji iz CRPS-a?</span></label></li>
+        <li><label><input type="checkbox" data-k="profakture"><span class="box" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></span><span class="txt"><strong>Namjena profaktura:</strong> Da li su profakture izdate jasno i tačno na ime aplikanta?</span></label></li>
+      </ul>
+
+      <p class="done-msg" id="done-msg" role="status">Sve je provjereno. Spremni ste za predaju. Srećno!</p>
+      <button type="button" class="link-btn" id="reset">Poništi označeno</button>
+    </div>
+  </section>
 
 </main>
 
-<footer class="w-full text-center py-10 text-pastel-400 text-xs mt-auto border-t border-pastel-100">
-    <p>&copy; 2026 Vodič za NVO projekte. Sva prava zadržana.</p>
+<footer class="footer">
+  <div class="wrap">
+    <h2>Znate nekoga kome ovo treba?</h2>
+    <p>Podijelite vodič sa nekim ko piše biznis plan ili aplicira za grant.</p>
+    <div class="hero-actions">
+      <button type="button" class="btn btn-primary" id="share"><svg class="i" aria-hidden="true"><use href="#i-share"/></svg>Podijeli vodič</button>
+      <a class="btn btn-ghost" href="#top"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg>Na vrh</a>
+    </div>
+    <small>&copy; 2026 Vodič za NVO projekte. Informacije su opšteg karaktera. Uslovi konkursa se mijenjaju, zato uvijek provjerite aktuelni javni poziv.</small>
+  </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  // Scroll progress
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Active chapter chip
+  var links = Array.prototype.slice.call(document.querySelectorAll('.chapnav a'));
+  if ('IntersectionObserver' in window) {
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var a = byId[e.target.id];
+        if (!a) return;
+        links.forEach(function (l) { l.classList.remove('active'); l.removeAttribute('aria-current'); });
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'true');
+        a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  // Checklist with saved state
+  var KEY = 'vodic-checklista-v1';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#checklist input'));
+  var fill = document.getElementById('meter-fill');
+  var label = document.getElementById('meter-label');
+  var done = document.getElementById('done-msg');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+  boxes.forEach(function (b) { b.checked = !!saved[b.dataset.k]; });
+
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    fill.style.width = (n / boxes.length * 100) + '%';
+    label.textContent = n + ' / ' + boxes.length + ' provjereno';
+    done.classList.toggle('show', n === boxes.length);
+    var state = {};
+    boxes.forEach(function (b) { state[b.dataset.k] = b.checked; });
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  boxes.forEach(function (b) { b.addEventListener('change', update); });
+  document.getElementById('reset').addEventListener('click', function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    update();
+  });
+  update();
+
+  // Share
+  var toast = document.getElementById('toast');
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  }
+  document.getElementById('share').addEventListener('click', function () {
+    var data = { title: document.title, text: 'Praktični vodič za apliciranje za bespovratna sredstva u Crnoj Gori', url: location.href.split('#')[0] };
+    if (navigator.share) {
+      navigator.share(data).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(data.url).then(function () { showToast('Link je kopiran'); }, function () { showToast(data.url); });
+    } else {
+      showToast(data.url);
+    }
+  });
+})();
+</script>
 </body>
 </html>
